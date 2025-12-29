@@ -225,6 +225,15 @@
             transform: translate(-50%, -50%) scale(1); /* Reset scale to 1 for images */
         }
 
+        /* DARK MODE FIX: White Badge for Images */
+        /* This creates a clean white circle background behind the logos in dark mode to hide square artifacts */
+        body:not([data-theme="light"]) img.ai-icon {
+            background-color: white;
+            border-radius: 50%;
+            padding: 2px;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2); /* Nord Cyan Glow */
+        }
+
         /* BRAND COLORS & GLOWS */
         .brand-openai.active { filter: drop-shadow(0 0 15px rgba(16, 163, 127, 0.4)); }
         .brand-claude.active { filter: drop-shadow(0 0 15px rgba(193, 95, 60, 0.5)); }
