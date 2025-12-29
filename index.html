@@ -382,14 +382,26 @@
             <div class="w-16 h-16 bg-success/20 rounded-full flex items-center justify-center mx-auto mb-6 text-success text-3xl"><i class="ph-bold ph-check-circle"></i></div>
             <h2 class="text-3xl mb-2 font-black tracking-tight">Mottaget!</h2>
             <p class="mb-8 text-sm opacity-70 leading-relaxed">Vi bearbetar nu informationen för: <br><span id="displaySuccessUrl" class="inline-block mt-2 px-3 py-1 bg-white/5 rounded font-mono text-nord-cyan border border-white/10">---</span></p>
-            <div class="bg-black/30 rounded-2xl p-6 text-left border border-white/5 mb-8">
-                <div class="text-[9px] font-black uppercase tracking-widest text-nord-cyan mb-4 flex items-center gap-2"><i class="ph-bold ph-fast-forward"></i> Nästa steg</div>
+            
+            <!-- Updated Info Box: Cleaner Color & Copy -->
+            <div class="bg-nord-cyan/5 rounded-2xl p-6 text-left border border-nord-cyan/10 mb-8">
+                <div class="text-[9px] font-black uppercase tracking-widest text-nord-cyan mb-4 flex items-center gap-2"><i class="ph-bold ph-fast-forward"></i> Vad händer nu?</div>
                 <ul class="space-y-4">
-                    <li class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-nord-cyan/10 flex items-center justify-center shrink-0 mt-0.5"><i class="ph-bold ph-magnifying-glass text-[10px] text-nord-cyan"></i></div><span class="text-xs opacity-80">Full skanning av teknisk AEO-infrastruktur</span></li>
-                    <li class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-nord-cyan/10 flex items-center justify-center shrink-0 mt-0.5"><i class="ph-bold ph-tree-structure text-[10px] text-nord-cyan"></i></div><span class="text-xs opacity-80">Identifiering av primära AI-entiteter</span></li>
-                    <li class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-nord-cyan/10 flex items-center justify-center shrink-0 mt-0.5"><i class="ph-bold ph-envelope-simple text-[10px] text-nord-cyan"></i></div><span class="text-xs opacity-80">Rapport levereras direkt till din inkorg</span></li>
+                    <li class="flex items-start gap-3">
+                        <div class="w-5 h-5 rounded-full bg-nord-cyan/10 flex items-center justify-center shrink-0 mt-0.5"><i class="ph-bold ph-cpu text-[10px] text-nord-cyan"></i></div>
+                        <span class="text-xs opacity-80">Vi analyserar din domän</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="w-5 h-5 rounded-full bg-nord-cyan/10 flex items-center justify-center shrink-0 mt-0.5"><i class="ph-bold ph-chart-bar text-[10px] text-nord-cyan"></i></div>
+                        <span class="text-xs opacity-80">Beräknar din AI-synlighet</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="w-5 h-5 rounded-full bg-nord-cyan/10 flex items-center justify-center shrink-0 mt-0.5"><i class="ph-bold ph-envelope-simple-open text-[10px] text-nord-cyan"></i></div>
+                        <span class="text-xs opacity-80">Du får rapporten strax <span class="text-nord-cyan/70 italic">(kolla skräpposten!)</span></span>
+                    </li>
                 </ul>
             </div>
+            
             <button onclick="closeModal('successModal')" class="text-xs uppercase tracking-[0.2em] font-black opacity-40 hover:opacity-100 hover:text-nord-cyan transition-all">Stäng fönstret</button>
         </div>
     </div>
