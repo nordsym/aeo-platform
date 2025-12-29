@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NordSym | AEO & GEO Services</title>
-    <meta name="description" content="From SEO to AEO. Optimize your digital presence for AI Search Engines like ChatGPT and Perplexity.">
+    <title>NordSym | AEO & GEO Tjänster</title>
+    <meta name="description" content="Från SEO till AEO. Optimera din digitala närvaro för AI-sökmotorer som ChatGPT och Perplexity.">
     
     <!-- SEO & Social -->
-    <meta name="keywords" content="AEO, GEO, AI Search, ChatGPT Optimization, Google SGE, Voice Search, NordSym">
+    <meta name="keywords" content="AEO, GEO, AI Sök, ChatGPT Optimering, Google SGE, Röstsök, NordSym">
     <meta name="author" content="NordSym AB">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="NordSym | The Future of Search">
-    <meta property="og:description" content="2005 was SEO. 2025 is AEO. Is your business ready for AI search?">
+    <meta property="og:title" content="NordSym | Framtidens Sök">
+    <meta property="og:description" content="2005 var det SEO. 2026 är det AEO. Är ditt företag redo för AI-sök?">
     <meta property="og:image" content="https://nordsym.com/og-aeo.jpg"> <!-- Placeholder -->
     <meta name="twitter:card" content="summary_large_image">
 
@@ -103,11 +103,28 @@
             overflow-x: hidden;
         }
 
-        /* Deep Space Background */
+        /* Deep Space Background (Gradient Backup) */
         body:not([data-theme="light"]) {
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(30, 58, 138, 0.2) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(0, 212, 255, 0.05) 0%, transparent 40%);
+        }
+
+        /* Starfall Canvas */
+        #starfall {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        body[data-theme="light"] #starfall {
+            opacity: 0;
         }
 
         /* Blueprint Background */
@@ -117,8 +134,7 @@
                 linear-gradient(90deg, #E5E7EB 1px, transparent 1px);
             background-size: 40px 40px;
         }
-        body[data-theme="light"] .star { display: none; }
-
+        
         /* --- TYPOGRAPHY --- */
         h1, h2, h3, h4 { font-family: 'Comfortaa', sans-serif; font-weight: 700; letter-spacing: -0.03em; }
         .font-mono { font-family: 'Source Code Pro', monospace; }
@@ -233,21 +249,6 @@
         }
 
         /* --- ANIMATIONS --- */
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            animation: float 30s infinite ease-in-out;
-            z-index: -1;
-            pointer-events: none;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); opacity: 0.4; }
-            50% { transform: translateY(-30px); opacity: 0.8; }
-        }
-        
         .spinner {
             width: 20px; height: 20px;
             border: 2px solid rgba(0, 212, 255, 0.3);
@@ -285,11 +286,14 @@
 </head>
 <body class="antialiased">
 
+    <!-- CANVAS BACKGROUND -->
+    <canvas id="starfall"></canvas>
+
     <!-- NAVIGATION -->
     <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-gradient-to-b from-[#0c1427]/90 to-transparent backdrop-blur-sm">
         <a href="https://nordsym.com" class="flex items-center gap-2 text-sm font-medium opacity-80 hover:opacity-100 hover:text-nord-cyan transition-colors">
             <i class="ph-bold ph-arrow-left"></i>
-            Back to NordSym
+            Tillbaka till NordSym
         </a>
         
         <button id="themeToggle" class="w-10 h-10 rounded-full flex items-center justify-center border border-[var(--glass-border)] bg-[var(--glass-bg)] text-[var(--nord-cyan)] hover:scale-110 transition-transform" aria-label="Toggle theme">
@@ -307,25 +311,25 @@
             <div class="text-center mb-8">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--nord-purple)]/20 border border-[var(--nord-purple)] text-[var(--nord-purple)] text-xs font-bold uppercase tracking-wider mb-4">
                     <span class="w-2 h-2 rounded-full bg-[var(--nord-purple)] animate-pulse"></span>
-                    Deep Analysis Required
+                    Djupanalys Krävs
                 </div>
-                <h2 class="text-3xl mb-3">Unlock the Future</h2>
-                <p class="opacity-70 text-sm leading-relaxed">We have successfully connected to the Knowledge Graph. Where should we send your detailed AEO/GEO report?</p>
+                <h2 class="text-3xl mb-3">Lås upp Framtiden</h2>
+                <p class="opacity-70 text-sm leading-relaxed">Vi har anslutit till Knowledge Graph. Vart ska vi skicka din detaljerade AEO/GEO-rapport?</p>
             </div>
 
             <form id="leadForm" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-mono opacity-60 mb-2 uppercase">Business Email</label>
-                    <input type="email" id="leadEmail" required placeholder="name@company.com" class="input-styled">
+                    <label class="block text-xs font-mono opacity-60 mb-2 uppercase">Företags-epost</label>
+                    <input type="email" id="leadEmail" required placeholder="namn@foretag.se" class="input-styled">
                 </div>
                 <input type="hidden" id="leadUrl">
                 <input type="hidden" id="leadSource" value="aeo_hero">
                 
                 <button type="submit" class="cta-button w-full mt-2">
-                    <span>Unlock Analysis</span>
+                    <span>Lås upp Analys</span>
                     <i class="ph-bold ph-arrow-right"></i>
                 </button>
-                <p class="text-xs text-center opacity-50 mt-4">Report generated & sent within 5 minutes.</p>
+                <p class="text-xs text-center opacity-50 mt-4">Rapporten genereras & skickas inom 5 minuter.</p>
             </form>
         </div>
     </div>
@@ -336,10 +340,10 @@
             <div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-green-500 text-4xl">
                 <i class="ph-bold ph-check"></i>
             </div>
-            <h2 class="text-3xl mb-4">Analysis Queued</h2>
-            <p class="mb-6 opacity-80">Our AI agents are scanning <span id="successUrl" class="text-cyan font-mono bg-blue-900/30 px-2 py-1 rounded text-sm"></span>.</p>
-            <p class="text-sm opacity-60 mb-8">Check your inbox momentarily.</p>
-            <button onclick="closeModal('successModal')" class="text-sm border-b border-white/20 hover:text-cyan hover:border-cyan transition-colors pb-1">Close Window</button>
+            <h2 class="text-3xl mb-4">Analys Köad</h2>
+            <p class="mb-6 opacity-80">Våra AI-agenter skannar nu <span id="successUrl" class="text-cyan font-mono bg-blue-900/30 px-2 py-1 rounded text-sm"></span>.</p>
+            <p class="text-sm opacity-60 mb-8">Kolla din inkorg strax.</p>
+            <button onclick="closeModal('successModal')" class="text-sm border-b border-white/20 hover:text-cyan hover:border-cyan transition-colors pb-1">Stäng Fönstret</button>
         </div>
     </div>
 
@@ -353,16 +357,16 @@
                 <span class="opacity-30">→</span>
                 <span class="px-3 py-1 rounded border border-white/10 opacity-70">2005: SEO</span>
                 <span class="opacity-30">→</span>
-                <span class="px-3 py-1 rounded bg-[var(--nord-cyan)] text-[#0c1427] font-bold shadow-[0_0_15px_var(--cyan-glow)] animate-pulse">2025: AEO/GEO</span>
+                <span class="px-3 py-1 rounded bg-[var(--nord-cyan)] text-[#0c1427] font-bold shadow-[0_0_15px_var(--cyan-glow)] animate-pulse">2026: AEO/GEO</span>
             </div>
             
             <h1 class="text-4xl md:text-6xl lg:text-7xl mb-6 leading-tight">
-                Is your website visible to <br>
-                <span class="text-cyan">AI search engines?</span>
+                Är din webbplats synlig för <br>
+                <span class="text-cyan">AI-sökmotorer?</span>
             </h1>
             
             <p class="text-lg md:text-xl opacity-70 max-w-2xl mx-auto mb-12">
-                SEO hasn't died, it evolved. We secure your ranking on Google <strong>while</strong> optimizing your visibility for ChatGPT, Perplexity, and the AI era.
+                SEO är inte dött, det har utvecklats. Vi säkrar din ranking på Google <strong>samtidigt</strong> som vi optimerar din synlighet för ChatGPT, Perplexity och AI-eran.
             </p>
             
             <!-- Hero Form -->
@@ -374,7 +378,7 @@
                         type="url" 
                         id="heroUrl" 
                         class="input-styled text-center md:text-left"
-                        placeholder="Enter your website URL (example.com)" 
+                        placeholder="Ange din webbplats (exempel.se)" 
                         required 
                         autocomplete="url"
                     />
@@ -382,19 +386,19 @@
                 </div>
                 
                 <button type="submit" id="heroSubmitBtn" class="cta-button text-lg py-4" disabled>
-                    <span id="heroBtnText">Run Free AEO/GEO Analysis</span>
+                    <span id="heroBtnText">Kör Gratis AEO/GEO Analys</span>
                     <div id="heroSpinner" class="spinner hidden ml-2"></div>
                 </button>
                 
                 <div class="flex flex-col md:flex-row items-center justify-center gap-4 mt-6 text-xs opacity-60">
-                    <span class="flex items-center gap-1"><i class="ph-fill ph-check-circle"></i> No credit card required</span>
+                    <span class="flex items-center gap-1"><i class="ph-fill ph-check-circle"></i> Inget kreditkort krävs</span>
                     <span class="hidden md:inline">•</span>
-                    <span class="flex items-center gap-1"><i class="ph-fill ph-clock"></i> Takes 30 seconds</span>
+                    <span class="flex items-center gap-1"><i class="ph-fill ph-clock"></i> Tar 30 sekunder</span>
                 </div>
             </form>
             
             <div class="mt-8">
-                <a href="#pricing" class="text-sm opacity-50 hover:opacity-100 hover:text-cyan border-b border-transparent hover:border-cyan transition-all">Or book a free consultation</a>
+                <a href="#pricing" class="text-sm opacity-50 hover:opacity-100 hover:text-cyan border-b border-transparent hover:border-cyan transition-all">Eller boka en gratis konsultation</a>
             </div>
         </div>
     </section>
@@ -403,8 +407,8 @@
     <section class="py-20 px-6 bg-gradient-to-b from-transparent to-[rgba(0,212,255,0.02)]">
         <div class="container mx-auto max-w-[1200px]">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl mb-4">The Next Evolution</h2>
-                <p class="opacity-60">Why traditional SEO isn't enough anymore.</p>
+                <h2 class="text-3xl md:text-4xl mb-4">Nästa Evolution</h2>
+                <p class="opacity-60">Varför traditionell SEO inte längre räcker.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -414,10 +418,10 @@
                         <div class="w-12 h-12 bg-[rgba(147,112,219,0.1)] rounded-xl flex items-center justify-center text-[var(--nord-purple)] text-2xl group-hover:scale-110 transition-transform">
                             <i class="ph-duotone ph-brain"></i>
                         </div>
-                        <span class="text-[10px] uppercase font-bold tracking-wider opacity-50 border border-[var(--glass-border)] px-2 py-1 rounded">Optimization</span>
+                        <span class="text-[10px] uppercase font-bold tracking-wider opacity-50 border border-[var(--glass-border)] px-2 py-1 rounded">Optimering</span>
                     </div>
                     <h3 class="text-2xl mb-3">AEO</h3>
-                    <p class="opacity-70 text-sm leading-relaxed">Answer Engine Optimization. We structure your content so it can be directly understood and cited by AI assistants like ChatGPT & Siri.</p>
+                    <p class="opacity-70 text-sm leading-relaxed">Answer Engine Optimization. Vi strukturerar ditt innehåll så att det kan förstås och citeras direkt av AI-assistenter som ChatGPT & Siri.</p>
                 </div>
                 
                 <!-- Card 2: GEO -->
@@ -426,10 +430,10 @@
                         <div class="w-12 h-12 bg-[rgba(0,212,255,0.1)] rounded-xl flex items-center justify-center text-[var(--nord-cyan)] text-2xl group-hover:scale-110 transition-transform">
                             <i class="ph-duotone ph-network"></i>
                         </div>
-                        <span class="text-[10px] uppercase font-bold tracking-wider opacity-50 border border-[var(--glass-border)] px-2 py-1 rounded">Authority</span>
+                        <span class="text-[10px] uppercase font-bold tracking-wider opacity-50 border border-[var(--glass-border)] px-2 py-1 rounded">Auktoritet</span>
                     </div>
                     <h3 class="text-2xl mb-3">GEO</h3>
-                    <p class="opacity-70 text-sm leading-relaxed">Generative Engine Optimization. We build the entity trust signals required for AI models to reference your business as a fact.</p>
+                    <p class="opacity-70 text-sm leading-relaxed">Generative Engine Optimization. Vi bygger de förtroendesignaler (entity trust) som krävs för att AI-modeller ska referera till ditt företag som fakta.</p>
                 </div>
                 
                 <!-- Card 3: Beyond SEO -->
@@ -438,10 +442,10 @@
                         <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-transform">
                             <i class="ph-duotone ph-rocket-launch"></i>
                         </div>
-                        <span class="text-[10px] uppercase font-bold tracking-wider opacity-50 border border-[var(--glass-border)] px-2 py-1 rounded">The Hybrid Model</span>
+                        <span class="text-[10px] uppercase font-bold tracking-wider opacity-50 border border-[var(--glass-border)] px-2 py-1 rounded">Hybridmodellen</span>
                     </div>
                     <h3 class="text-2xl mb-3">SEO + AEO</h3>
-                    <p class="opacity-70 text-sm leading-relaxed">You don't have to choose. AEO relies on perfect Technical SEO. We fix your foundation for Google <strong>and</strong> your entities for AI.</p>
+                    <p class="opacity-70 text-sm leading-relaxed">Du behöver inte välja. AEO bygger på perfekt teknisk SEO. Vi fixar din grund för Google <strong>och</strong> dina entiteter för AI.</p>
                 </div>
             </div>
         </div>
@@ -450,7 +454,7 @@
     <!-- HOW IT WORKS (Timeline) -->
     <section class="py-24 px-6 relative overflow-hidden">
         <div class="container mx-auto max-w-[1000px] relative z-10">
-            <h2 class="text-3xl md:text-4xl text-center mb-16">How It Works</h2>
+            <h2 class="text-3xl md:text-4xl text-center mb-16">Hur det fungerar</h2>
             
             <div class="relative grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
                 <!-- Connector Line (Desktop) -->
@@ -464,9 +468,9 @@
                         <i class="ph-duotone ph-magnifying-glass text-cyan"></i>
                     </div>
                     <div>
-                        <span class="text-xs font-mono opacity-50 block mb-1">STEP 01</span>
-                        <h3 class="text-xl mb-2">Analyze</h3>
-                        <p class="text-sm opacity-70">We scan how AI engines currently read and interpret your digital footprint.</p>
+                        <span class="text-xs font-mono opacity-50 block mb-1">STEG 01</span>
+                        <h3 class="text-xl mb-2">Analysera</h3>
+                        <p class="text-sm opacity-70">Vi skannar hur AI-motorer för närvarande läser och tolkar ditt digitala fotavtryck.</p>
                     </div>
                 </div>
 
@@ -476,9 +480,9 @@
                         <i class="ph-duotone ph-wrench text-cyan"></i>
                     </div>
                     <div>
-                        <span class="text-xs font-mono opacity-50 block mb-1">STEP 02</span>
-                        <h3 class="text-xl mb-2">Optimize</h3>
-                        <p class="text-sm opacity-70">We fix structure, entities, schema, and content gaps to speak "AI".</p>
+                        <span class="text-xs font-mono opacity-50 block mb-1">STEG 02</span>
+                        <h3 class="text-xl mb-2">Optimera</h3>
+                        <p class="text-sm opacity-70">Vi fixar struktur, entiteter, schema och innehållsluckor för att tala "AI".</p>
                     </div>
                 </div>
 
@@ -488,9 +492,9 @@
                         <i class="ph-duotone ph-trophy text-cyan"></i>
                     </div>
                     <div>
-                        <span class="text-xs font-mono opacity-50 block mb-1">STEP 03</span>
-                        <h3 class="text-xl mb-2">Win Visibility</h3>
-                        <p class="text-sm opacity-70">Your brand becomes discoverable across Search Generative Experience & Chatbots.</p>
+                        <span class="text-xs font-mono opacity-50 block mb-1">STEG 03</span>
+                        <h3 class="text-xl mb-2">Vinn Synlighet</h3>
+                        <p class="text-sm opacity-70">Ditt varumärke blir upptäckbart över Search Generative Experience & Chatbots.</p>
                     </div>
                 </div>
             </div>
@@ -500,39 +504,39 @@
     <!-- BENEFITS (Why Us) -->
     <section class="py-20 px-6">
         <div class="container mx-auto max-w-[1000px]">
-            <h2 class="text-3xl md:text-4xl text-center mb-16">Why NordSym?</h2>
+            <h2 class="text-3xl md:text-4xl text-center mb-16">Varför NordSym?</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Benefit 1 -->
                 <div class="glass-card p-6 flex items-start gap-4 hover:border-[var(--nord-cyan)] transition-colors">
                     <i class="ph-duotone ph-sparkle text-3xl text-[var(--nord-cyan)] shrink-0"></i>
                     <div>
-                        <h3 class="text-lg mb-1">Beyond Google</h3>
-                        <p class="text-sm opacity-70">Get discovered by AI assistants, not just traditional search engines.</p>
+                        <h3 class="text-lg mb-1">Bortom Google</h3>
+                        <p class="text-sm opacity-70">Bli upptäckt av AI-assistenter, inte bara traditionella sökmotorer.</p>
                     </div>
                 </div>
                 <!-- Benefit 2 -->
                 <div class="glass-card p-6 flex items-start gap-4 hover:border-[var(--nord-cyan)] transition-colors">
                     <i class="ph-duotone ph-shield-check text-3xl text-[var(--nord-cyan)] shrink-0"></i>
                     <div>
-                        <h3 class="text-lg mb-1">Future-Proof</h3>
-                        <p class="text-sm opacity-70">Stay ahead of the algorithm shifts killing traditional SEO traffic.</p>
+                        <h3 class="text-lg mb-1">Framtidssäkrat</h3>
+                        <p class="text-sm opacity-70">Håll dig steget före algoritmskiften som dödar traditionell SEO-trafik.</p>
                     </div>
                 </div>
                 <!-- Benefit 3 -->
                 <div class="glass-card p-6 flex items-start gap-4 hover:border-[var(--nord-cyan)] transition-colors">
                     <i class="ph-duotone ph-chart-line-up text-3xl text-[var(--nord-cyan)] shrink-0"></i>
                     <div>
-                        <h3 class="text-lg mb-1">Measurable</h3>
-                        <p class="text-sm opacity-70">Clear insights on how your brand entity is perceived by AI.</p>
+                        <h3 class="text-lg mb-1">Mätbart</h3>
+                        <p class="text-sm opacity-70">Tydliga insikter om hur ditt varumärkes entitet uppfattas av AI.</p>
                     </div>
                 </div>
                 <!-- Benefit 4 -->
                 <div class="glass-card p-6 flex items-start gap-4 hover:border-[var(--nord-cyan)] transition-colors">
                     <i class="ph-duotone ph-tag text-3xl text-[var(--nord-cyan)] shrink-0"></i>
                     <div>
-                        <h3 class="text-lg mb-1">Productized</h3>
-                        <p class="text-sm opacity-70">No vague agency retainers. Fixed packages, clear deliverables.</p>
+                        <h3 class="text-lg mb-1">Produktifierat</h3>
+                        <p class="text-sm opacity-70">Inga luddiga byråavtal. Fasta paket, tydliga leveranser.</p>
                     </div>
                 </div>
             </div>
@@ -542,47 +546,47 @@
     <!-- PRICING -->
     <section id="pricing" class="py-24 px-6 bg-gradient-to-t from-transparent to-[rgba(0,212,255,0.02)]">
         <div class="container mx-auto max-w-[1200px]">
-            <h2 class="text-3xl md:text-4xl text-center mb-16">Choose Your Level</h2>
+            <h2 class="text-3xl md:text-4xl text-center mb-16">Välj Din Nivå</h2>
             
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
                 
                 <!-- STARTER -->
                 <div class="glass-card p-8">
                     <h3 class="text-xl mb-2">Starter</h3>
-                    <div class="inline-block px-3 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-white/10 mb-6">Small Business</div>
+                    <div class="inline-block px-3 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-white/10 mb-6">Småföretag</div>
                     <div class="mb-6">
-                        <span class="text-4xl font-display font-bold">2,499</span>
-                        <span class="text-sm opacity-60"> SEK / mo</span>
+                        <span class="text-4xl font-display font-bold">2 499</span>
+                        <span class="text-sm opacity-60"> SEK / mån</span>
                     </div>
                     <ul class="space-y-3 mb-8 text-sm opacity-80">
-                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> <strong>Technical SEO Foundation</strong></li>
+                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> <strong>Teknisk SEO Grund</strong></li>
                         <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> AEO/GEO Audit</li>
-                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> AI Readability Score</li>
-                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Basic Schema Markup</li>
-                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Monthly Report</li>
+                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> AI Läsbarhetsscore</li>
+                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Grundläggande Schema Markup</li>
+                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Månadsrapport</li>
                     </ul>
-                    <a href="#shopify-starter" class="cta-button text-sm">Get Started</a>
+                    <a href="#shopify-starter" class="cta-button text-sm">Kom Igång</a>
                 </div>
 
                 <!-- GROWTH (Highlighted) -->
                 <div class="glass-card highlight p-8 md:p-10 relative bg-[rgba(0,31,63,0.6)]">
-                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[var(--nord-cyan)] text-[#0c1427] text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-[0_0_15px_var(--cyan-glow)]">Most Popular</div>
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[var(--nord-cyan)] text-[#0c1427] text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-[0_0_15px_var(--cyan-glow)]">Mest Populär</div>
                     
                     <h3 class="text-2xl mb-2 text-cyan">Growth</h3>
                     <div class="inline-block px-3 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-[var(--nord-cyan)]/20 text-cyan mb-6">Scale Ups</div>
                     <div class="mb-6">
-                        <span class="text-5xl font-display font-bold">5,999</span>
-                        <span class="text-sm opacity-60"> SEK / mo</span>
+                        <span class="text-5xl font-display font-bold">5 999</span>
+                        <span class="text-sm opacity-60"> SEK / mån</span>
                     </div>
                     <ul class="space-y-4 mb-10 text-sm">
-                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> <strong>Everything in Starter</strong></li>
-                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> <strong>Advanced SEO & Core Web Vitals</strong></li>
-                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Full AEO/GEO Optimization</li>
-                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Entity Knowledge Graph Fixes</li>
-                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> AI Trust Signal Building</li>
-                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Competitor Analysis</li>
+                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> <strong>Allt i Starter</strong></li>
+                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> <strong>Avancerad SEO & Core Web Vitals</strong></li>
+                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Full AEO/GEO Optimering</li>
+                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Entity Knowledge Graph Fixar</li>
+                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> AI Förtroendesignaler</li>
+                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Konkurrentanalys</li>
                     </ul>
-                    <a href="#shopify-growth" class="cta-button primary-solid text-base">Choose Growth</a>
+                    <a href="#shopify-growth" class="cta-button primary-solid text-base">Välj Growth</a>
                 </div>
 
                 <!-- ADVANCED -->
@@ -590,15 +594,15 @@
                     <h3 class="text-xl mb-2">Advanced</h3>
                     <div class="inline-block px-3 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-white/10 mb-6">Enterprise</div>
                     <div class="mb-6">
-                        <span class="text-4xl font-display font-bold">Custom</span>
+                        <span class="text-4xl font-display font-bold">Offert</span>
                     </div>
                     <ul class="space-y-3 mb-8 text-sm opacity-80">
-                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> <strong>Everything in Growth</strong></li>
-                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Real-time AI Monitoring</li>
-                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Dedicated Strategy Calls</li>
-                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Priority Support</li>
+                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> <strong>Allt i Growth</strong></li>
+                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Realtids AI-övervakning</li>
+                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Dedikerade Strategimöten</li>
+                        <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Prioriterad Support</li>
                     </ul>
-                    <a href="#contact-enterprise" class="cta-button text-sm bg-transparent border-[var(--glass-border)] text-[var(--nord-text-primary)] hover:border-[var(--nord-cyan)]">Contact Sales</a>
+                    <a href="#contact-enterprise" class="cta-button text-sm bg-transparent border-[var(--glass-border)] text-[var(--nord-text-primary)] hover:border-[var(--nord-cyan)]">Kontakta Sälj</a>
                 </div>
 
             </div>
@@ -608,7 +612,7 @@
     <!-- FINAL CTA -->
     <section class="py-24 px-6 border-t border-[var(--glass-border)]">
         <div class="container mx-auto max-w-[600px] text-center">
-            <h2 class="text-2xl md:text-3xl mb-8">Check your AEO/GEO visibility now</h2>
+            <h2 class="text-2xl md:text-3xl mb-8">Kolla din AEO/GEO-synlighet nu</h2>
             
             <form id="footerForm" class="relative">
                 <div class="relative mb-4">
@@ -616,13 +620,13 @@
                         type="url" 
                         id="footerUrl" 
                         class="input-styled"
-                        placeholder="example.com" 
+                        placeholder="exempel.se" 
                         required 
                     />
                     <i id="footerValidation" class="ph-bold ph-x validation-icon"></i>
                 </div>
                 <button type="submit" id="footerSubmitBtn" class="cta-button" disabled>
-                    <span id="footerBtnText">Run Free Analysis</span>
+                    <span id="footerBtnText">Kör Gratis Analys</span>
                     <div id="footerSpinner" class="spinner hidden ml-2"></div>
                 </button>
             </form>
@@ -632,9 +636,9 @@
     <!-- FOOTER -->
     <footer class="py-12 border-t border-[var(--glass-border)] text-center opacity-60 text-sm">
         <span class="font-display font-bold text-xl block mb-4 text-[var(--nord-text-primary)]">Nordsym</span>
-        <p class="mb-4">&copy; 2025 Nordsym AB. All systems functional.</p>
+        <p class="mb-4">&copy; 2025 Nordsym AB. Alla system funktionella.</p>
         <div class="space-x-4">
-            <a href="#" class="hover:text-[var(--nord-cyan)]">System Status</a>
+            <a href="#" class="hover:text-[var(--nord-cyan)]">Systemstatus</a>
             <a href="#" class="hover:text-[var(--nord-cyan)]">Integritet</a>
             <a href="mailto:support@nordsym.se" class="hover:text-[var(--nord-cyan)]">Support</a>
         </div>
@@ -656,17 +660,137 @@
     <!-- LOGIC -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // CONSTANTS
-            const FORMSPREE_ENDPOINT = "https://formspree.io/f/mykynevn"; // Placeholder endpoint for demo
+            // --- NORDSYM CELESTIAL BACKGROUND PROTOCOL (Starfall) ---
+            const canvas = document.getElementById('starfall');
+            const ctx = canvas.getContext('2d');
             
-            // THEATER MODE LOGS (AEO Specific)
+            let width, height;
+            let stars = [];
+            let meteors = [];
+            let animationFrameId;
+
+            // Resize & Init
+            const resize = () => {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+                initStars();
+            };
+
+            const initStars = () => {
+                stars = [];
+                // Responsive Star Count (Mobile: ~150, Desktop: ~400)
+                const starCount = width < 768 ? 150 : 400;
+                
+                for(let i = 0; i < starCount; i++) {
+                    stars.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        radius: Math.random() * 1.5,
+                        baseAlpha: Math.random() * 0.6 + 0.1,
+                        pulseSpeed: Math.random() * 0.02 + 0.005,
+                        pulsePhase: Math.random() * Math.PI * 2
+                    });
+                }
+            };
+
+            const drawStars = () => {
+                stars.forEach(star => {
+                    // Update Pulse
+                    star.pulsePhase += star.pulseSpeed;
+                    const alpha = star.baseAlpha + Math.sin(star.pulsePhase) * 0.2;
+                    const finalAlpha = Math.max(0.1, Math.min(0.8, alpha)); // Clamp 0.1 - 0.8
+                    
+                    // Draw
+                    ctx.fillStyle = `rgba(255, 255, 255, ${finalAlpha})`;
+                    ctx.beginPath();
+                    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            };
+
+            const updateMeteors = () => {
+                // Spawn Meteor (0.8% chance per frame)
+                if (Math.random() < 0.008) {
+                    const length = Math.random() * 80 + 150;
+                    const startX = Math.random() * (width + 300); // Allow spawning right of screen
+                    const startY = Math.random() * (height / 2) - 100; // Mostly top half, or above screen
+                    
+                    // Force meteors to spawn mostly top/right to flow diagonal down/left
+                    // Logic: Either spawn on top edge OR right edge
+                    let x, y;
+                    if (Math.random() > 0.5) {
+                        x = Math.random() * width;
+                        y = -length;
+                    } else {
+                        x = width + length;
+                        y = Math.random() * height * 0.6; // Top 60% of height
+                    }
+
+                    meteors.push({
+                        x: x,
+                        y: y,
+                        speed: Math.random() * 5 + 10,
+                        length: length,
+                        angle: Math.PI / 4 // 45 degrees
+                    });
+                }
+
+                // Move & Draw Meteors
+                meteors.forEach((m, index) => {
+                    m.x -= m.speed * Math.cos(m.angle); // Move Left
+                    m.y += m.speed * Math.sin(m.angle); // Move Down
+
+                    const tailX = m.x + m.length * Math.cos(m.angle); // Tail is opposite direction (Up-Right)
+                    const tailY = m.y - m.length * Math.sin(m.angle);
+
+                    const grad = ctx.createLinearGradient(m.x, m.y, tailX, tailY);
+                    grad.addColorStop(0, '#00BFFF'); // Cyan Head
+                    grad.addColorStop(1, 'rgba(0, 191, 255, 0)'); // Transparent Tail
+
+                    ctx.strokeStyle = grad;
+                    ctx.lineWidth = 2;
+                    ctx.lineCap = 'round';
+                    ctx.beginPath();
+                    ctx.moveTo(m.x, m.y);
+                    ctx.lineTo(tailX, tailY);
+                    ctx.stroke();
+
+                    // Cleanup off-screen
+                    if (m.x < -300 || m.y > height + 300) {
+                        meteors.splice(index, 1);
+                    }
+                });
+            };
+
+            const animate = () => {
+                ctx.clearRect(0, 0, width, height);
+                
+                // Only draw if dark mode is active (based on body attribute or default)
+                // We draw anyway, CSS handles opacity, but for performance we could skip.
+                // For simplicity and transition smoothness, we keep drawing.
+                drawStars();
+                updateMeteors();
+                
+                animationFrameId = requestAnimationFrame(animate);
+            };
+
+            // Start
+            window.addEventListener('resize', resize);
+            resize();
+            animate();
+            
+            // --- EXISTING LOGIC ---
+            // CONSTANTS
+            const FORMSPREE_ENDPOINT = "https://formspree.io/f/mykynevn"; 
             const TERMINAL_LOGS = [
-                "Initializing AEO Protocol...",
-                "Handshaking with OpenAI API...",
-                "Parsing Entity Knowledge Graph...",
-                "Analysing Voice Search Readiness...",
-                "Checking Content Snippet Capability...",
-                "Calculating GEO Authority Score..."
+                "Initierar AEO Protokoll...",
+                "Handskakning med OpenAI API...",
+                "Tolkar Entity Knowledge Graph...",
+                "Analyserar Röstsöks-beredskap...",
+                "Kontrollerar Content Snippet Kapacitet...",
+                "Kalkylerar GEO Auktoritetsscore..."
             ];
 
             // --- DOM ELEMENTS ---
@@ -709,21 +833,6 @@
                 updateThemeIcon(currentTheme);
             });
 
-            // --- STARFIELD EFFECT ---
-            const createStars = () => {
-                for (let i = 0; i < 50; i++) {
-                    const star = document.createElement('div');
-                    star.className = 'star';
-                    star.style.left = `${Math.random() * 100}%`;
-                    star.style.top = `${Math.random() * 100}%`;
-                    star.style.animationDelay = `-${Math.random() * 30}s`;
-                    star.style.animationDuration = `${20 + Math.random() * 20}s`;
-                    star.style.opacity = Math.random() * 0.5 + 0.3;
-                    document.body.appendChild(star);
-                }
-            };
-            createStars();
-
             // --- URL VALIDATION ---
             const isValidUrl = (string) => {
                 try {
@@ -758,14 +867,11 @@
 
             // --- THEATER MODE & INTERCEPT ---
             const startTheaterMode = (url, btn, btnTextEl, spinner, source) => {
-                // UI Update
                 btn.disabled = true;
                 spinner.classList.remove('hidden');
                 btnTextEl.classList.add('font-mono', 'text-xs', 'text-[var(--nord-cyan)]');
                 
                 let logIndex = 0;
-                
-                // Terminal Logs
                 const logInterval = setInterval(() => {
                     if (logIndex < TERMINAL_LOGS.length) {
                         btnTextEl.textContent = TERMINAL_LOGS[logIndex];
@@ -773,11 +879,10 @@
                     }
                 }, 500);
 
-                // Modal Trigger
                 setTimeout(() => {
                     clearInterval(logInterval);
                     spinner.classList.add('hidden');
-                    btnTextEl.textContent = "Analysis Complete";
+                    btnTextEl.textContent = "Analys Slutförd";
                     
                     leadUrl.value = url;
                     leadSource.value = source;
@@ -829,10 +934,10 @@
                         document.getElementById('successModal').querySelector('.success-card-inner').classList.remove('scale-90');
                         leadForm.reset();
                     } else {
-                        alert('Something went wrong. Please try again.');
+                        alert('Något gick fel. Vänligen försök igen.');
                     }
                 } catch (error) {
-                    alert('Connection error. Please check your internet.');
+                    alert('Anslutningsfel. Kontrollera ditt internet.');
                 } finally {
                     btn.disabled = false;
                     btn.innerHTML = originalText;
