@@ -53,32 +53,21 @@
 
     <style>
         :root {
-            /* NordSym Deep Space Palette */
             --nord-bg-primary: #0c1427;
             --nord-cyan: #00D4FF;
             --nord-purple: #9370DB;
             --nord-text-primary: #F0F4F8;
             --nord-text-secondary: #CBD5E0;
-            
-            /* Glassmorphism System */
             --glass-bg: rgba(30, 58, 138, 0.1); 
             --glass-border: rgba(0, 212, 255, 0.25);
             --glass-blur: blur(16px);
-            
-            /* Input Styles */
             --input-bg: rgba(12, 20, 39, 0.8);
             --input-border: rgba(240, 244, 248, 0.2);
-            
-            /* Glows */
             --cyan-glow: rgba(0, 212, 255, 0.3);
-            --purple-glow: rgba(147, 112, 219, 0.3);
-            
-            /* Status */
             --success: #10B981;
             --error: #EF4444;
         }
 
-        /* --- LIGHT MODE / BLUEPRINT THEME --- */
         body[data-theme="light"] {
             --nord-bg-primary: #FFFFFF;
             --nord-cyan: #00BFFF;
@@ -91,7 +80,6 @@
             --cyan-glow: rgba(0, 191, 255, 0.08);
         }
 
-        /* --- BASE --- */
         body {
             background-color: var(--nord-bg-primary);
             color: var(--nord-text-primary);
@@ -103,7 +91,6 @@
             overflow-x: hidden;
         }
 
-        /* Starfall Canvas */
         #starfall {
             position: fixed;
             top: 0;
@@ -116,23 +103,15 @@
             pointer-events: none;
         }
 
-        body[data-theme="light"] #starfall {
-            opacity: 0;
-        }
-
-        /* Blueprint Background */
+        body[data-theme="light"] #starfall { opacity: 0; }
         body[data-theme="light"] {
-            background-image: 
-                linear-gradient(#F3F4F6 1px, transparent 1px),
-                linear-gradient(90deg, #F3F4F6 1px, transparent 1px);
+            background-image: linear-gradient(#F3F4F6 1px, transparent 1px), linear-gradient(90deg, #F3F4F6 1px, transparent 1px);
             background-size: 40px 40px;
         }
         
-        /* --- TYPOGRAPHY --- */
         h1, h2, h3, h4 { font-family: 'Comfortaa', sans-serif; font-weight: 700; letter-spacing: -0.03em; }
         .font-mono { font-family: 'Source Code Pro', monospace; }
 
-        /* --- COMPONENT: BUTTONS --- */
         .cta-button {
             width: 100%;
             padding: 1rem 1.5rem;
@@ -160,35 +139,13 @@
             background: rgba(0, 31, 63, 0.95);
         }
 
-        .cta-button.primary-solid {
-            background: var(--nord-cyan);
-            color: #0c1427;
-            font-weight: 800;
-        }
-        .cta-button.primary-solid:hover {
-            background: #4de1ff;
-            color: #000;
-        }
+        .cta-button.primary-solid { background: var(--nord-cyan); color: #0c1427; font-weight: 800; }
+        .cta-button.primary-solid:hover { background: #4de1ff; color: #000; }
+        .cta-button:disabled { opacity: 0.6; cursor: wait; transform: none !important; }
 
-        .cta-button:disabled {
-            opacity: 0.6;
-            cursor: wait;
-            transform: none !important;
-        }
+        body[data-theme="light"] .cta-button { background: white; border-color: #00BFFF; color: #00BFFF; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); }
+        body[data-theme="light"] .cta-button.primary-solid { background: #00BFFF; color: white; }
 
-        /* Light Mode Button Override */
-        body[data-theme="light"] .cta-button {
-            background: white;
-            border-color: #00BFFF;
-            color: #00BFFF;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-        body[data-theme="light"] .cta-button.primary-solid {
-            background: #00BFFF;
-            color: white;
-        }
-
-        /* --- COMPONENT: CARDS --- */
         .glass-card {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
@@ -198,38 +155,17 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .glass-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--nord-cyan);
-        }
+        .glass-card:hover { transform: translateY(-5px); border-color: var(--nord-cyan); }
+        .glass-card.highlight { border-color: var(--nord-cyan); box-shadow: 0 0 30px rgba(0, 212, 255, 0.15); z-index: 10; }
         
-        /* Growth Card Highlight - High Pop */
-        .glass-card.highlight {
-            border-color: var(--nord-cyan);
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
-            z-index: 10;
-        }
-        
-        /* Dark Mode Highlighting */
-        body:not([data-theme="light"]) .glass-card.highlight {
-            background: rgba(10, 40, 80, 0.4); 
-            box-shadow: 0 0 40px rgba(0, 212, 255, 0.15);
-        }
-
-        /* Light Mode Highlighting */
-        body[data-theme="light"] .glass-card.highlight {
-            background: #FFFFFF;
-            box-shadow: 0 10px 40px rgba(0, 191, 255, 0.12);
-            border-width: 2px;
-            border-color: var(--nord-cyan);
-        }
+        body:not([data-theme="light"]) .glass-card.highlight { background: rgba(10, 40, 80, 0.4); box-shadow: 0 0 40px rgba(0, 212, 255, 0.15); }
+        body[data-theme="light"] .glass-card.highlight { background: #FFFFFF; box-shadow: 0 10px 40px rgba(0, 191, 255, 0.12); border-width: 2px; border-color: var(--nord-cyan); }
 
         @media (min-width: 1025px) {
             .glass-card.highlight { transform: scale(1.05); }
             .glass-card.highlight:hover { transform: scale(1.05) translateY(-5px); }
         }
 
-        /* --- COMPONENT: INPUTS --- */
         .input-styled {
             background-color: var(--input-bg);
             border: 1px solid var(--input-border);
@@ -242,48 +178,15 @@
             transition: all 0.2s ease;
         }
 
-        .input-styled:focus {
-            outline: none;
-            border-color: var(--nord-cyan);
-            box-shadow: 0 0 12px var(--cyan-glow);
-            background-color: var(--nord-bg-primary);
-        }
-        
-        body[data-theme="light"] .input-styled {
-            color: var(--nord-text-primary);
-        }
+        .input-styled:focus { outline: none; border-color: var(--nord-cyan); box-shadow: 0 0 12px var(--cyan-glow); background-color: var(--nord-bg-primary); }
+        body[data-theme="light"] .input-styled { color: var(--nord-text-primary); }
 
-        /* --- ACCORDION / FAQ SPECIFICS --- */
         details summary::-webkit-details-marker { display: none; }
         details[open] summary i { transform: rotate(180deg); }
         
-        /* --- ANIMATIONS --- */
-        .spinner {
-            width: 20px; height: 20px;
-            border: 2px solid rgba(0, 212, 255, 0.2);
-            border-top-color: var(--nord-cyan);
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-        }
+        .spinner { width: 20px; height: 20px; border: 2px solid rgba(0, 212, 255, 0.2); border-top-color: var(--nord-cyan); border-radius: 50%; animation: spin 0.6s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* --- VALIDATION --- */
-        .validation-icon {
-            position: absolute;
-            right: 1.25rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.25rem;
-            pointer-events: none;
-            transition: opacity 0.2s, transform 0.2s;
-            opacity: 0;
-        }
-        .input-styled.valid + .validation-icon { opacity: 1; color: var(--success); transform: translateY(-50%) scale(1.1); }
-        .input-styled.invalid + .validation-icon { opacity: 1; color: var(--error); }
-        .input-styled.valid { border-color: var(--success); }
-        .input-styled.invalid { border-color: var(--error); }
-
-        /* Modal Transitions */
         .modal-hidden { opacity: 0; pointer-events: none; visibility: hidden; }
         .modal-active { opacity: 1; pointer-events: all; visibility: visible; }
     </style>
@@ -296,12 +199,9 @@
     <!-- NAVIGATION -->
     <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-gradient-to-b from-[#0c1427]/80 to-transparent backdrop-blur-md">
         <div class="flex items-center gap-4">
-            <!-- Logo -->
             <a href="https://nordsym.com" class="block hover:scale-110 transition-transform duration-300">
                 <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logo" class="h-10 w-10 drop-shadow-[0_0_8px_rgba(0,212,255,0.4)]">
             </a>
-            
-            <!-- Beta Badge -->
             <div class="px-2.5 py-0.5 rounded-full bg-[var(--nord-purple)]/20 border border-[var(--nord-purple)]/40 text-[var(--nord-purple)] text-[10px] font-extrabold tracking-widest uppercase flex items-center gap-2 cursor-help" title="Systemet är i stängd beta">
                 <span class="relative flex h-2 w-2">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--nord-purple)] opacity-75"></span>
@@ -309,243 +209,150 @@
                 </span>
                 Beta
             </div>
-            
             <div class="h-6 w-[1px] bg-white/10 hidden sm:block"></div>
-            
             <a href="https://nordsym.com" class="hidden sm:flex items-center gap-2 text-xs font-bold uppercase tracking-tighter opacity-60 hover:opacity-100 hover:text-nord-cyan transition-all">
                 <i class="ph-bold ph-arrow-left"></i>
                 Huvudsajt
             </a>
         </div>
-        
         <button id="themeToggle" class="w-10 h-10 rounded-full flex items-center justify-center border border-[var(--glass-border)] bg-[var(--glass-bg)] text-[var(--nord-cyan)] hover:scale-110 transition-transform shadow-lg" aria-label="Byt tema">
             <i class="ph-bold ph-moon theme-icon text-lg"></i>
         </button>
     </nav>
 
-    <!-- INTERCEPT MODAL (LEAD CAPTURE) -->
+    <!-- MODALS -->
+    <!-- INTERCEPT MODAL (N8N) -->
     <div id="interceptModal" class="fixed inset-0 z-[1000] flex items-center justify-center bg-[#0c1427]/90 backdrop-blur-xl modal-hidden transition-all duration-300">
         <div class="glass-card p-10 max-w-lg w-full transform transition-all duration-500 relative mx-4">
             <button onclick="closeModal('interceptModal')" class="absolute top-4 right-4 opacity-50 hover:opacity-100 hover:text-red-400 p-2">
                 <i class="ph-bold ph-x text-xl"></i>
             </button>
-
             <div class="text-center mb-8">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--nord-purple)]/20 border border-[var(--nord-purple)] text-[var(--nord-purple)] text-[10px] font-bold uppercase tracking-widest mb-4">
-                    <span class="w-2 h-2 rounded-full bg-[var(--nord-purple)] animate-pulse"></span>
-                    Analys Slutförd
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--nord-cyan)]/20 border border-[var(--nord-cyan)] text-[var(--nord-cyan)] text-[10px] font-bold uppercase tracking-widest mb-4">
+                    <span class="w-2 h-2 rounded-full bg-[var(--nord-cyan)] animate-pulse"></span>
+                    Analys Förberedd
                 </div>
-                <h2 class="text-3xl mb-3">Din Rapport är Redo</h2>
-                <p class="opacity-70 text-sm leading-relaxed">Systemet har identifierat 12+ optimeringsmöjligheter. Vart ska vi skicka din AEO/GEO-rapport?</p>
+                <h2 class="text-3xl mb-3">Redo för utskick</h2>
+                <p class="opacity-70 text-sm leading-relaxed">Systemet har identifierat din domän. Vart ska vi skicka din tekniska AEO/GEO-rapport?</p>
             </div>
-
-            <form id="leadForm" class="space-y-4">
+            <form id="leadForm" class="space-y-4" data-target="n8n">
                 <div>
                     <label class="block text-[10px] font-mono opacity-50 mb-2 uppercase tracking-widest">Företags-epost</label>
                     <input type="email" name="email" id="leadEmail" required placeholder="namn@foretag.se" class="input-styled">
                 </div>
-                <input type="hidden" name="domain" id="leadUrl">
-                <input type="hidden" name="source" value="aeo_hero">
-                
+                <input type="hidden" name="url" id="leadUrl">
                 <button type="submit" class="cta-button w-full mt-2">
                     <span>Lås upp Analys</span>
                     <i class="ph-bold ph-arrow-right"></i>
                 </button>
-                <p class="text-[10px] text-center opacity-50 mt-4 italic">Vi skickar rapporten inom kort. Ingen spam, bara insikter.</p>
+                <p class="text-[10px] text-center opacity-50 mt-4 italic">Analysen genereras och skickas via e-post inom kort.</p>
             </form>
         </div>
     </div>
 
-    <!-- WAITLIST / INTEREST MODAL -->
+    <!-- PLAN MODAL (FORMSPREE) -->
     <div id="planModal" class="fixed inset-0 z-[1000] flex items-center justify-center bg-[#0c1427]/90 backdrop-blur-xl modal-hidden transition-all duration-300">
         <div class="glass-card p-10 max-w-lg w-full transform transition-all duration-500 relative mx-4">
             <button onclick="closeModal('planModal')" class="absolute top-4 right-4 opacity-50 hover:opacity-100 hover:text-red-400 p-2">
                 <i class="ph-bold ph-x text-xl"></i>
             </button>
-
             <div class="text-center mb-8">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--nord-cyan)]/20 border border-[var(--nord-cyan)] text-[var(--nord-cyan)] text-[10px] font-bold uppercase tracking-widest mb-4">
-                    Early Access
-                </div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--nord-cyan)]/20 border border-[var(--nord-cyan)] text-[var(--nord-cyan)] text-[10px] font-bold uppercase tracking-widest mb-4">Early Access</div>
                 <h2 class="text-3xl mb-3" id="planModalTitle">Gå med i kön</h2>
-                <p class="opacity-70 text-sm leading-relaxed">Vi rullar ut plattformen för <span id="planNameDisplay" class="font-bold text-[var(--nord-cyan)]"></span> i etapper. Vi kontaktar dig så fort en plats blir ledig.</p>
+                <p class="opacity-70 text-sm leading-relaxed">Vi rullar ut plattformen för <span id="planNameDisplay" class="font-bold text-[var(--nord-cyan)]"></span> i etapper.</p>
             </div>
-
-            <form id="planForm" class="space-y-4">
-                <div>
-                    <label class="block text-[10px] font-mono opacity-50 mb-2 uppercase tracking-widest">Företags-epost</label>
-                    <input type="email" name="email" id="planEmail" required placeholder="namn@foretag.se" class="input-styled">
-                </div>
-                <div>
-                    <label class="block text-[10px] font-mono opacity-50 mb-2 uppercase tracking-widest">Webbplats</label>
-                    <input type="url" name="url" id="planUrl" placeholder="foretag.com" class="input-styled">
-                </div>
+            <form id="planForm" class="space-y-4" data-target="formspree">
+                <div><label class="block text-[10px] font-mono opacity-50 mb-2 uppercase tracking-widest">Företags-epost</label><input type="email" name="email" required placeholder="namn@foretag.se" class="input-styled"></div>
+                <div><label class="block text-[10px] font-mono opacity-50 mb-2 uppercase tracking-widest">Webbplats</label><input type="url" name="url" placeholder="foretag.com" class="input-styled"></div>
                 <input type="hidden" name="plan" id="planSelected">
-                
-                <button type="submit" class="cta-button w-full mt-2">
-                    <span>Säkra din plats</span>
-                    <i class="ph-bold ph-paper-plane-right"></i>
-                </button>
+                <button type="submit" class="cta-button w-full mt-2"><span>Säkra din plats</span><i class="ph-bold ph-paper-plane-right"></i></button>
             </form>
         </div>
     </div>
 
-    <!-- CONTACT MODAL -->
+    <!-- CONTACT MODAL (FORMSPREE) -->
     <div id="contactModal" class="fixed inset-0 z-[1000] flex items-center justify-center bg-[#0c1427]/95 backdrop-blur-2xl modal-hidden transition-all duration-300">
-        <div class="glass-card p-8 md:p-12 max-w-xl w-full transform transition-all duration-500 relative mx-4 border-nord-cyan/30 shadow-[0_0_50px_rgba(0,212,255,0.15)] overflow-hidden">
+        <div class="glass-card p-8 md:p-12 max-w-xl w-full transform transition-all duration-500 relative mx-4 border-nord-cyan/30 overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-nord-cyan via-nord-purple to-nord-cyan"></div>
-            
-            <button onclick="closeModal('contactModal')" class="absolute top-6 right-6 opacity-30 hover:opacity-100 hover:text-nord-cyan p-2 transition-all">
-                <i class="ph-bold ph-x text-2xl"></i>
-            </button>
-
+            <button onclick="closeModal('contactModal')" class="absolute top-6 right-6 opacity-30 hover:opacity-100 p-2"><i class="ph-bold ph-x text-2xl"></i></button>
             <div class="text-center mb-10">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-nord-cyan/10 to-nord-purple/10 border border-nord-cyan/20 text-nord-cyan text-[10px] font-black uppercase tracking-[0.2em] mb-6">
-                    <i class="ph-fill ph-chat-circle-dots"></i>
-                    Direktkontakt
-                </div>
-                <h2 class="text-3xl md:text-4xl mb-4 bg-gradient-to-br from-nord-text-primary to-nord-text-primary/60 bg-clip-text text-transparent">Låt oss prata framtid</h2>
-                <p class="opacity-60 text-sm md:text-base max-w-sm mx-auto leading-relaxed">Har du frågor om AEO eller vill diskutera ett specifikt case? Vi svarar oftast inom 24 timmar.</p>
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-nord-cyan/10 border border-nord-cyan/20 text-nord-cyan text-[10px] font-black uppercase tracking-[0.2em] mb-6">DIREKTKONTAKT</div>
+                <h2 class="text-3xl md:text-4xl mb-4">Låt oss prata framtid</h2>
+                <p class="opacity-60 text-sm max-w-sm mx-auto">Har du frågor om AEO eller vill diskutera ett specifikt case?</p>
             </div>
-
-            <form id="contactForm" class="space-y-5">
+            <form id="contactForm" class="space-y-5" data-target="formspree">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div class="group">
-                        <label class="block text-[9px] font-black text-nord-cyan uppercase tracking-widest mb-2 ml-1 opacity-70 group-focus-within:opacity-100 transition-opacity">Fullständigt Namn</label>
-                        <input type="text" name="name" required placeholder="Erik Andersson" class="input-styled !bg-white/5 focus:!bg-nord-bg-primary/40">
-                    </div>
-                    <div class="group">
-                        <label class="block text-[9px] font-black text-nord-cyan uppercase tracking-widest mb-2 ml-1 opacity-70 group-focus-within:opacity-100 transition-opacity">Företags-epost</label>
-                        <input type="email" name="email" required placeholder="erik@bolag.se" class="input-styled !bg-white/5 focus:!bg-nord-bg-primary/40">
-                    </div>
+                    <div><input type="text" name="name" required placeholder="Namn" class="input-styled !bg-white/5"></div>
+                    <div><input type="email" name="email" required placeholder="E-post" class="input-styled !bg-white/5"></div>
                 </div>
-                <div class="group">
-                    <label class="block text-[9px] font-black text-nord-cyan uppercase tracking-widest mb-2 ml-1 opacity-70 group-focus-within:opacity-100 transition-opacity">Ditt meddelande</label>
-                    <textarea name="message" required rows="5" placeholder="Berätta kort om vad ni vill uppnå..." class="input-styled !bg-white/5 focus:!bg-nord-bg-primary/40 resize-none leading-relaxed"></textarea>
-                </div>
-                
-                <button type="submit" class="cta-button primary-solid w-full mt-4 group">
-                    <span>Skicka Meddelande</span>
-                    <i class="ph-bold ph-paper-plane-tilt group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
-                </button>
+                <textarea name="message" required rows="4" placeholder="Ditt meddelande..." class="input-styled !bg-white/5 resize-none"></textarea>
+                <button type="submit" class="cta-button primary-solid w-full">Skicka Meddelande</button>
             </form>
         </div>
     </div>
 
     <!-- PRIVACY MODAL -->
-    <div id="privacyModal" class="fixed inset-0 z-[1000] flex items-center justify-center bg-[#0c1427]/90 backdrop-blur-xl modal-hidden transition-all duration-300">
-        <div class="glass-card p-8 md:p-12 max-w-2xl w-full transform transition-all duration-500 relative mx-4 max-h-[85vh] overflow-y-auto border-nord-cyan/20">
-            <button onclick="closeModal('privacyModal')" class="absolute top-6 right-6 opacity-50 hover:opacity-100 p-2">
-                <i class="ph-bold ph-x text-xl"></i>
-            </button>
-            <div class="mb-8">
-                <div class="text-[10px] font-black text-nord-cyan uppercase tracking-[0.3em] mb-2">Säkerhet & Data</div>
-                <h2 class="text-3xl md:text-4xl border-b border-white/10 pb-4">Integritetspolicy</h2>
+    <div id="privacyModal" class="fixed inset-0 z-[1000] flex items-center justify-center bg-[#0c1427]/95 backdrop-blur-xl modal-hidden transition-all duration-300">
+        <div class="glass-card p-10 max-w-2xl w-full transform transition-all duration-500 relative mx-4 max-h-[80vh] overflow-y-auto border-nord-cyan/20">
+            <button onclick="closeModal('privacyModal')" class="absolute top-4 right-4 opacity-50 hover:opacity-100 p-2"><i class="ph-bold ph-x text-xl"></i></button>
+            <h2 class="text-3xl mb-6 tracking-tighter">Integritetspolicy</h2>
+            <div class="space-y-6 text-sm opacity-70 leading-relaxed font-mono">
+                <p><strong>Datalagring:</strong> Vi sparar endast de uppgifter du själv anger i våra formulär (E-post, URL, Namn). Denna data används uteslutande för att generera den begärda AEO-rapporten och för framtida kommunikation från NordSym.</p>
+                <p><strong>Cookies:</strong> Vi använder minimalt med cookies för att förbättra din upplevelse och för att mäta anonym statistik via Plausible (inga personuppgifter spåras).</p>
+                <p><strong>Dina Rättigheter:</strong> Du har när som helst rätt att begära utdrag eller radering av din data. Kontakta oss på hello@nordsym.com.</p>
             </div>
-            <div class="space-y-8 text-sm md:text-base opacity-80 leading-relaxed font-light">
-                <section>
-                    <h3 class="text-nord-cyan font-bold uppercase tracking-widest text-[11px] mb-3">Datainsamling</h3>
-                    <p>Vi samlar endast in den information som är nödvändig för att leverera våra AEO-analyser: din domänadress och din e-postadress. Vi använder aldrig tredjeparts-cookies för spårning.</p>
-                </section>
-                <section>
-                    <h3 class="text-nord-cyan font-bold uppercase tracking-widest text-[11px] mb-3">Lagring & Säkerhet</h3>
-                    <p>Din data lagras krypterat på servrar inom EU. Vi delar aldrig dina uppgifter med utomstående parter, förutom de verktyg som krävs för att generera den tekniska rapporten.</p>
-                </section>
-                <section>
-                    <h3 class="text-nord-cyan font-bold uppercase tracking-widest text-[11px] mb-3">Dina Rättigheter</h3>
-                    <p>Enligt GDPR har du rätt att begära utdrag, rättelse eller radering av din data när som helst. Kontakta oss på hello@nordsym.com för assistans.</p>
-                </section>
-            </div>
-            <button onclick="closeModal('privacyModal')" class="cta-button mt-10 text-xs">Jag förstår</button>
+            <button onclick="closeModal('privacyModal')" class="cta-button mt-8 text-xs">Jag förstår</button>
         </div>
     </div>
 
     <!-- TERMS MODAL -->
-    <div id="idTermsModal" class="fixed inset-0 z-[1000] flex items-center justify-center bg-[#0c1427]/90 backdrop-blur-xl modal-hidden transition-all duration-300">
-        <div class="glass-card p-8 md:p-12 max-w-2xl w-full transform transition-all duration-500 relative mx-4 max-h-[85vh] overflow-y-auto border-nord-cyan/20">
-            <button onclick="closeModal('idTermsModal')" class="absolute top-6 right-6 opacity-50 hover:opacity-100 p-2">
-                <i class="ph-bold ph-x text-xl"></i>
-            </button>
-            <div class="mb-8">
-                <div class="text-[10px] font-black text-nord-cyan uppercase tracking-[0.3em] mb-2">Juridik & Avtal</div>
-                <h2 class="text-3xl md:text-4xl border-b border-white/10 pb-4">Användarvillkor</h2>
+    <div id="termsModal" class="fixed inset-0 z-[1000] flex items-center justify-center bg-[#0c1427]/95 backdrop-blur-xl modal-hidden transition-all duration-300">
+        <div class="glass-card p-10 max-w-2xl w-full transform transition-all duration-500 relative mx-4 max-h-[80vh] overflow-y-auto border-nord-cyan/20">
+            <button onclick="closeModal('termsModal')" class="absolute top-4 right-4 opacity-50 hover:opacity-100 p-2"><i class="ph-bold ph-x text-xl"></i></button>
+            <h2 class="text-3xl mb-6 tracking-tighter">Användarvillkor</h2>
+            <div class="space-y-6 text-sm opacity-70 leading-relaxed font-mono">
+                <p><strong>Analysens natur:</strong> NordSym AEO-rapporter är baserade på aktuella algoritmer hos AI-motorer som ChatGPT och Perplexity. Vi garanterar inte specifika placeringar då dessa algoritmer är utanför vår direkta kontroll.</p>
+                <p><strong>Användning:</strong> Innehållet i de rapporter vi levererar är avsett för intern affärsutveckling. Det är förbjudet att vidaresälja våra analyser utan skriftligt godkännande.</p>
+                <p><strong>Ansvar:</strong> NordSym AB ansvarar inte för eventuella affärsmässiga beslut som fattas baserat på de genererade rapporterna.</p>
             </div>
-            <div class="space-y-8 text-sm md:text-base opacity-80 leading-relaxed font-light">
-                <section>
-                    <h3 class="text-nord-cyan font-bold uppercase tracking-widest text-[11px] mb-3">Tjänstens omfattning</h3>
-                    <p>NordSym AEO Platform tillhandahåller strategisk rådgivning och tekniska analyser för AI-optimering. Resultaten är baserade på aktuella algoritmer hos ChatGPT, Claude och Perplexity och kan variera över tid.</p>
-                </section>
-                <section>
-                    <h3 class="text-nord-cyan font-bold uppercase tracking-widest text-[11px] mb-3">Immateriella rättigheter</h3>
-                    <p>De rapporter och analyser som genereras är för kundens interna bruk. Allt källmaterial, metoder och NordSyms proprietära ramverk förblir NordSym AB:s egendom.</p>
-                </section>
-                <section>
-                    <h3 class="text-nord-cyan font-bold uppercase tracking-widest text-[11px] mb-3">Ansvarsbegränsning</h3>
-                    <p>Vi garanterar inte specifika placeringar i AI-svar då dessa styrs av tredje part. NordSym ansvarar inte för direkta eller indirekta förluster som uppstår vid användning av tjänsten.</p>
-                </section>
-            </div>
-            <button onclick="closeModal('idTermsModal')" class="cta-button mt-10 text-xs">Acceptera villkor</button>
+            <button onclick="closeModal('termsModal')" class="cta-button mt-8 text-xs">Acceptera villkor</button>
         </div>
     </div>
 
     <!-- SUCCESS MODAL -->
-    <div id="successModal" class="fixed inset-0 z-[1000] flex items-center justify-center bg-[#0c1427]/95 backdrop-blur-2xl modal-hidden transition-all duration-300">
-        <div class="glass-card p-12 text-center max-w-lg transform transition-all duration-500 success-card-inner mx-4">
-            <div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-green-500 text-4xl shadow-[0_0_20px_rgba(16,185,129,0.3)]">
-                <i class="ph-bold ph-check"></i>
-            </div>
-            <h2 class="text-3xl mb-4">Mottaget!</h2>
-            <p class="mb-6 opacity-80">Vi bearbetar nu informationen för <span id="successUrl" class="text-cyan font-mono bg-blue-900/30 px-2 py-1 rounded text-sm"></span>.</p>
-            
-            <div class="bg-black/20 rounded-xl p-6 mb-8 text-left border border-white/5">
-                <p class="text-[10px] text-[var(--nord-cyan)] font-black uppercase mb-3 flex items-center gap-2">
-                    <i class="ph-bold ph-clock"></i> Nästa steg
-                </p>
-                <ul class="space-y-3 text-xs opacity-90 font-medium">
-                    <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-[var(--nord-purple)] text-base"></i> Vi skannar din tekniska infrastruktur</li>
-                    <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-[var(--nord-purple)] text-base"></i> Vi identifierar dina viktigaste AI-entiteter</li>
-                    <li class="flex items-center gap-3"><i class="ph-fill ph-check-circle text-[var(--nord-purple)] text-base"></i> Du får en fullständig rapport via e-post</li>
+    <div id="successModal" class="fixed inset-0 z-[1100] flex items-center justify-center bg-[#0c1427]/95 backdrop-blur-2xl modal-hidden transition-all duration-300">
+        <div class="glass-card p-10 text-center max-w-md w-full relative mx-4 border-success/30 shadow-[0_0_40px_rgba(16,185,129,0.1)]">
+            <div class="w-16 h-16 bg-success/20 rounded-full flex items-center justify-center mx-auto mb-6 text-success text-3xl"><i class="ph-bold ph-check-circle"></i></div>
+            <h2 class="text-3xl mb-2 font-black tracking-tight">Mottaget!</h2>
+            <p class="mb-8 text-sm opacity-70 leading-relaxed">Vi bearbetar nu informationen för: <br><span id="displaySuccessUrl" class="inline-block mt-2 px-3 py-1 bg-white/5 rounded font-mono text-nord-cyan border border-white/10">---</span></p>
+            <div class="bg-black/30 rounded-2xl p-6 text-left border border-white/5 mb-8">
+                <div class="text-[9px] font-black uppercase tracking-widest text-nord-cyan mb-4 flex items-center gap-2"><i class="ph-bold ph-fast-forward"></i> Nästa steg</div>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-nord-cyan/10 flex items-center justify-center shrink-0 mt-0.5"><i class="ph-bold ph-magnifying-glass text-[10px] text-nord-cyan"></i></div><span class="text-xs opacity-80">Full skanning av teknisk AEO-infrastruktur</span></li>
+                    <li class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-nord-cyan/10 flex items-center justify-center shrink-0 mt-0.5"><i class="ph-bold ph-tree-structure text-[10px] text-nord-cyan"></i></div><span class="text-xs opacity-80">Identifiering av primära AI-entiteter</span></li>
+                    <li class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-nord-cyan/10 flex items-center justify-center shrink-0 mt-0.5"><i class="ph-bold ph-envelope-simple text-[10px] text-nord-cyan"></i></div><span class="text-xs opacity-80">Rapport levereras direkt till din inkorg</span></li>
                 </ul>
             </div>
-            
-            <button onclick="closeModal('successModal')" class="block w-full text-xs opacity-50 hover:opacity-100 hover:text-cyan transition-all uppercase tracking-widest font-black">Stäng</button>
+            <button onclick="closeModal('successModal')" class="text-xs uppercase tracking-[0.2em] font-black opacity-40 hover:opacity-100 hover:text-nord-cyan transition-all">Stäng fönstret</button>
         </div>
     </div>
 
-    <!-- HERO SECTION -->
+    <!-- MAIN CONTENT -->
+    <!-- HERO -->
     <section class="min-h-screen flex items-center justify-center pt-24 pb-20 relative px-6">
         <div class="max-w-4xl w-full text-center z-10">
             <div class="flex flex-wrap justify-center items-center gap-2 md:gap-4 mb-10 text-[10px] font-mono">
-                <!-- UPDATED TIMELINE TO 2026 -->
                 <span class="px-3 py-1 rounded border border-nord-cyan/20 opacity-70">2000: Bannerannonser</span>
                 <span class="opacity-50 text-nord-cyan">→</span>
                 <span class="px-3 py-1 rounded border border-nord-cyan/40 opacity-90">2005: SEO & SEM</span>
                 <span class="opacity-30">→</span>
                 <span class="px-3 py-1 rounded bg-[var(--nord-cyan)] text-[#0c1427] font-black shadow-[0_0_20px_var(--cyan-glow)]">2026: AEO & GEO</span>
             </div>
-            
-            <h1 class="text-4xl md:text-6xl lg:text-7xl mb-8 leading-[1.1] tracking-tighter">
-                Är ditt varumärke <br>
-                <span class="text-cyan">synligt för AI?</span>
-            </h1>
-            
-            <p class="text-lg md:text-xl opacity-70 max-w-2xl mx-auto mb-12 font-medium">
-                Optimera för <strong>ChatGPT, Claude & Perplexity</strong>. Vi transformerar din webbplats från en statisk sida till en källa som AI-motorer litar på.
-            </p>
-            
+            <h1 class="text-4xl md:text-6xl lg:text-7xl mb-8 leading-[1.1] tracking-tighter">Är ditt varumärke <br><span class="text-nord-cyan">synligt för AI?</span></h1>
+            <p class="text-lg md:text-xl opacity-70 max-w-2xl mx-auto mb-12 font-medium">Optimera för <strong>ChatGPT, Claude & Perplexity</strong>. Vi transformerar din webbplats från en statisk sida till en källa som AI-motorer litar på.</p>
             <form id="heroForm" class="glass-card p-6 md:p-10 max-w-2xl mx-auto shadow-2xl relative group">
-                <div class="absolute -inset-[1px] bg-gradient-to-r from-transparent via-[var(--nord-cyan)]/30 to-transparent rounded-[1.5rem] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                 <div class="relative mb-6">
-                    <input 
-                        type="text" 
-                        inputmode="url"
-                        id="heroUrl" 
-                        class="input-styled text-center"
-                        placeholder="Ange din domän (t.ex. foretag.com)" 
-                        required 
-                        autocomplete="off"
-                    />
-                    <i id="heroValidation" class="ph-bold ph-x validation-icon"></i>
+                    <input type="text" id="heroUrl" class="input-styled text-center" placeholder="Ange din domän (t.ex. foretag.com)" required autocomplete="off" />
                 </div>
                 <button type="submit" id="heroSubmitBtn" class="cta-button text-lg py-4" disabled>
                     <span id="heroBtnText">Kör Kostnadsfri AI-Analys</span>
@@ -555,286 +362,134 @@
         </div>
     </section>
 
-    <!-- EDUCATION SECTION -->
+    <!-- EDUCATION -->
+    <section class="py-24 px-6 relative border-t border-white/5">
+        <div class="container mx-auto max-w-6xl text-center mb-20">
+            <h2 class="text-3xl md:text-5xl mb-6 tracking-tighter">Det Nya Paradigmet</h2>
+            <p class="opacity-60 max-w-xl mx-auto">Sökvärlden har förändrats. Idag söker folk inte efter länkar, de söker efter svar.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="glass-card p-8 hover:bg-[var(--nord-purple)]/5"><div class="w-14 h-14 bg-[var(--nord-purple)]/10 rounded-2xl flex items-center justify-center text-[var(--nord-purple)] text-3xl mb-8"><i class="ph-duotone ph-brain"></i></div><h3 class="text-2xl mb-4">AEO</h3><p class="opacity-70 text-sm"><strong>Answer Engine Optimization.</strong> Strukturering så att AI-modeller kan citera ditt varumärke som källan.</p></div>
+            <div class="glass-card p-8 border-[var(--nord-cyan)]/30 bg-[var(--nord-cyan)]/5"><div class="w-14 h-14 bg-[var(--nord-cyan)]/10 rounded-2xl flex items-center justify-center text-[var(--nord-cyan)] text-3xl mb-8"><i class="ph-duotone ph-globe-hemisphere-east"></i></div><h3 class="text-2xl mb-4">GEO</h3><p class="opacity-70 text-sm"><strong>Generative Engine Optimization.</strong> Auktoritetssignaler för Google SGE och Perplexity.</p></div>
+            <div class="glass-card p-8"><div class="w-14 h-14 bg-[var(--nord-cyan)]/10 rounded-2xl flex items-center justify-center text-[var(--nord-cyan)] text-3xl mb-8"><i class="ph-duotone ph-fingerprint"></i></div><h3 class="text-2xl mb-4">Entiteter</h3><p class="opacity-70 text-sm">Glöm nyckelord. Vi bygger din <strong>digitala entitet</strong> i Knowledge Graphs.</p></div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="py-24 px-6 relative overflow-hidden bg-nord-cyan/[0.02]">
+        <div class="container mx-auto max-w-[1000px] relative z-10 text-center mb-20">
+            <h2 class="text-3xl md:text-5xl tracking-tighter">Hur det fungerar</h2>
+        </div>
+        <div class="relative grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 max-w-[1000px] mx-auto">
+            <div class="hidden md:block absolute top-8 left-0 w-full h-[1px] bg-nord-cyan/10"></div>
+            <div class="flex flex-row md:flex-col items-center md:text-center gap-6">
+                <div class="w-16 h-16 bg-nord-bg-primary border border-nord-cyan rounded-full flex items-center justify-center z-10 shrink-0 shadow-[0_0_15px_var(--cyan-glow)]"><i class="ph-duotone ph-magnifying-glass text-nord-cyan"></i></div>
+                <div><span class="text-[10px] font-mono opacity-40 block mb-1 tracking-widest uppercase">Steg 01</span><h3 class="text-xl mb-2 font-bold">Analysera</h3><p class="text-sm opacity-60">Vi skannar hur AI-motorer läser ditt digitala fotavtryck.</p></div>
+            </div>
+            <div class="flex flex-row md:flex-col items-center md:text-center gap-6">
+                <div class="w-16 h-16 bg-nord-bg-primary border border-nord-cyan rounded-full flex items-center justify-center z-10 shrink-0 shadow-[0_0_15px_var(--cyan-glow)]"><i class="ph-duotone ph-wrench text-nord-cyan"></i></div>
+                <div><span class="text-[10px] font-mono opacity-40 block mb-1 tracking-widest uppercase">Steg 02</span><h3 class="text-xl mb-2 font-bold">Optimera</h3><p class="text-sm opacity-60">Vi fixar struktur, entiteter och schema för att tala "AI".</p></div>
+            </div>
+            <div class="flex flex-row md:flex-col items-center md:text-center gap-6">
+                <div class="w-16 h-16 bg-nord-bg-primary border border-nord-cyan rounded-full flex items-center justify-center z-10 shrink-0 shadow-[0_0_15px_var(--cyan-glow)]"><i class="ph-duotone ph-rocket-launch text-nord-cyan"></i></div>
+                <div><span class="text-[10px] font-mono opacity-40 block mb-1 tracking-widest uppercase">Steg 03</span><h3 class="text-xl mb-2 font-bold">Vinn Synlighet</h3><p class="text-sm opacity-60">Ditt varumärke blir upptäckbart i chatbots och SGE.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY NORDSYM -->
     <section class="py-24 px-6 relative">
-        <div class="container mx-auto max-w-6xl">
-            <div class="text-center mb-20">
-                <h2 class="text-3xl md:text-5xl mb-6 tracking-tighter">Det Nya Paradigmet</h2>
-                <p class="opacity-60 max-w-xl mx-auto">Sökvärlden har förändrats. Idag söker folk inte efter länkar, de söker efter svar.</p>
+        <div class="container mx-auto max-w-[1100px] text-center mb-20">
+            <h2 class="text-3xl md:text-5xl tracking-tighter">Varför NordSym?</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[1100px] mx-auto">
+            <div class="glass-card p-8 flex items-start gap-6"><div class="w-12 h-12 bg-nord-cyan/10 rounded-xl flex items-center justify-center text-nord-cyan shrink-0"><i class="ph-duotone ph-sparkle text-2xl"></i></div><div><h3 class="text-xl mb-2 font-bold">Bortom Google</h3><p class="text-sm opacity-60">Bli upptäckt av AI-assistenter, inte bara traditionella sökmotorer.</p></div></div>
+            <div class="glass-card p-8 flex items-start gap-6"><div class="w-12 h-12 bg-nord-cyan/10 rounded-xl flex items-center justify-center text-nord-cyan shrink-0"><i class="ph-duotone ph-shield-check text-2xl"></i></div><div><h3 class="text-xl mb-2 font-bold">Framtidssäkrat</h3><p class="text-sm opacity-60">Håll dig steget före algoritmskiften som påverkar SEO-trafik.</p></div></div>
+            <div class="glass-card p-8 flex items-start gap-6"><div class="w-12 h-12 bg-nord-cyan/10 rounded-xl flex items-center justify-center text-nord-cyan shrink-0"><i class="ph-duotone ph-chart-bar text-2xl"></i></div><div><h3 class="text-xl mb-2 font-bold">Mätbart</h3><p class="text-sm opacity-60">Tydliga insikter om hur ditt varumärke uppfattas av AI-motorer.</p></div></div>
+            <div class="glass-card p-8 flex items-start gap-6"><div class="w-12 h-12 bg-nord-cyan/10 rounded-xl flex items-center justify-center text-nord-cyan shrink-0"><i class="ph-duotone ph-receipt text-2xl"></i></div><div><h3 class="text-xl mb-2 font-bold">Inga Timdebiteringar</h3><p class="text-sm opacity-60">Fasta månadspriser och garanterade leveranser utan överraskningar.</p></div></div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="py-32 px-4 sm:px-8 border-t border-white/5">
+        <div class="container mx-auto max-w-7xl text-center mb-20"><h2 class="text-4xl md:text-5xl tracking-tighter">Välj Din Nivå</h2><p class="opacity-60 max-w-xl mx-auto">Vi arbetar med ett begränsat antal kunder för att säkerställa kvalitet.</p></div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div class="glass-card p-8 flex flex-col">
+                <div class="mb-8"><h3 class="text-xl font-bold mb-1 uppercase tracking-widest text-sm opacity-50 text-left">Starter</h3><div class="text-5xl font-black mt-4">1 999 kr</div><p class="text-[10px] opacity-40 mt-1 uppercase font-black tracking-widest">SEK / mån</p></div>
+                <ul class="space-y-4 mb-12 text-sm flex-grow">
+                    <li class="flex gap-3"><i class="ph-bold ph-check text-nord-cyan"></i> <span>Månatlig automatisk AEO audit</span></li>
+                    <li class="flex gap-3"><i class="ph-bold ph-check text-nord-cyan"></i> <span>Implementation playbook (PDF)</span></li>
+                    <li class="flex gap-3"><i class="ph-bold ph-check text-nord-cyan"></i> <span>Schema markup templates</span></li>
+                </ul>
+                <button onclick="openPlanModal('Starter')" class="cta-button text-sm">Ansök om plats</button>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 hover:bg-[var(--nord-purple)]/5 transition-all">
-                    <div class="w-14 h-14 bg-[var(--nord-purple)]/10 rounded-2xl flex items-center justify-center text-[var(--nord-purple)] text-3xl mb-8">
-                        <i class="ph-duotone ph-brain"></i>
-                    </div>
-                    <h3 class="text-2xl mb-4">AEO</h3>
-                    <p class="opacity-70 text-sm leading-relaxed"><strong>Answer Engine Optimization.</strong> Vi strukturerar ditt innehåll så att AI-modeller kan läsa, förstå och citera ditt varumärke som den primära källan.</p>
-                </div>
-                <div class="glass-card p-8 border-[var(--nord-cyan)]/30 bg-[var(--nord-cyan)]/5">
-                    <div class="w-14 h-14 bg-[var(--nord-cyan)]/10 rounded-2xl flex items-center justify-center text-[var(--nord-cyan)] text-3xl mb-8">
-                        <i class="ph-duotone ph-globe-hemisphere-east"></i>
-                    </div>
-                    <h3 class="text-2xl mb-4">GEO</h3>
-                    <p class="opacity-70 text-sm leading-relaxed"><strong>Generative Engine Optimization.</strong> Vi skapar auktoritetssignaler som gör att du dyker upp i sammanfattningarna hos Google SGE och Perplexity.</p>
-                </div>
-                <div class="glass-card p-8 hover:bg-white/5 transition-all">
-                    <div class="w-14 h-14 bg-[var(--nord-cyan)]/10 rounded-2xl flex items-center justify-center text-[var(--nord-cyan)] text-3xl mb-8">
-                        <i class="ph-duotone ph-fingerprint"></i>
-                    </div>
-                    <h3 class="text-2xl mb-4">Entitet-fokus</h3>
-                    <p class="opacity-70 text-sm leading-relaxed">Glöm nyckelord. Vi bygger din <strong>digitala entitet</strong> i Knowledge Graphs, så att AI förstår <em>vilka</em> ni är, inte bara vad ni säljer.</p>
-                </div>
+            <div class="glass-card highlight p-8 md:p-12 relative flex flex-col">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-nord-cyan text-black text-[10px] font-black uppercase tracking-widest rounded-full shadow-[0_0_20px_var(--cyan-glow)]">Rekommenderas</div>
+                <div class="mb-8"><h3 class="text-2xl font-black mb-1 text-nord-cyan text-left">Growth</h3><div class="text-6xl font-black mt-4">4 999 kr</div><p class="text-[10px] opacity-40 mt-1 uppercase font-black tracking-widest">SEK / mån</p></div>
+                <ul class="space-y-5 mb-12 text-sm font-medium flex-grow">
+                    <li class="flex gap-3"><i class="ph-bold ph-sparkle text-nord-cyan"></i> <span>Allt i Starter</span></li>
+                    <li class="flex gap-3"><i class="ph-bold ph-check text-nord-cyan"></i> <span>Konkurrent-benchmarking</span></li>
+                    <li class="flex gap-3"><i class="ph-bold ph-check text-nord-cyan"></i> <span>Knowledge Graph setup</span></li>
+                </ul>
+                <button onclick="openPlanModal('Growth')" class="cta-button primary-solid text-base py-5">Ansök om plats</button>
+            </div>
+            <div class="glass-card p-8 flex flex-col">
+                <div class="mb-8"><h3 class="text-xl font-bold mb-1 uppercase tracking-widest text-sm opacity-50 text-left">Enterprise</h3><div class="text-4xl font-black mt-4 italic uppercase">Offert</div><p class="text-[10px] opacity-40 mt-1 uppercase font-black tracking-widest">Skräddarsytt</p></div>
+                <ul class="space-y-4 mb-12 text-sm flex-grow opacity-80">
+                    <li class="flex gap-3"><i class="ph-bold ph-sparkle text-nord-cyan"></i> <span>Full implementation (Done-for-you)</span></li>
+                    <li class="flex gap-3"><i class="ph-bold ph-check text-nord-cyan"></i> <span>Weekly real-time alerts</span></li>
+                    <li class="flex gap-3"><i class="ph-bold ph-check text-nord-cyan"></i> <span>Priority support (4h)</span></li>
+                </ul>
+                <button onclick="openModal('contactModal')" class="cta-button text-sm opacity-80">Kontakta oss</button>
             </div>
         </div>
     </section>
 
-    <!-- HOW IT WORKS SECTION -->
-    <section class="py-24 px-6 relative overflow-hidden">
-        <div class="container mx-auto max-w-[1000px] relative z-10">
-            <h2 class="text-3xl md:text-5xl text-center mb-20 tracking-tighter">Hur det fungerar</h2>
-            
-            <div class="relative grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
-                <div class="hidden md:block absolute top-8 left-0 w-full h-[1px] bg-[var(--glass-border)] opacity-30 -z-10"></div>
-                <div class="md:hidden absolute top-0 left-8 h-full w-[1px] bg-[var(--glass-border)] opacity-30 -z-10"></div>
-
-                <div class="flex flex-row md:flex-col items-center md:text-center gap-6">
-                    <div class="w-16 h-16 bg-[var(--nord-bg-primary)] border border-[var(--nord-cyan)] rounded-full flex items-center justify-center z-10 text-xl shrink-0 shadow-[0_0_15px_var(--cyan-glow)]">
-                        <i class="ph-duotone ph-magnifying-glass text-nord-cyan"></i>
-                    </div>
-                    <div>
-                        <span class="text-[10px] font-mono opacity-40 block mb-1 tracking-widest">STEG 01</span>
-                        <h3 class="text-xl mb-2 font-bold uppercase tracking-tight">Analysera</h3>
-                        <p class="text-sm opacity-60 leading-relaxed">Vi skannar hur AI-motorer för närvarande läser och tolkar ditt digitala fotavtryck.</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-row md:flex-col items-center md:text-center gap-6">
-                    <div class="w-16 h-16 bg-[var(--nord-bg-primary)] border border-[var(--nord-cyan)] rounded-full flex items-center justify-center z-10 text-xl shrink-0 shadow-[0_0_15px_var(--cyan-glow)]">
-                        <i class="ph-duotone ph-wrench text-nord-cyan"></i>
-                    </div>
-                    <div>
-                        <span class="text-[10px] font-mono opacity-40 block mb-1 tracking-widest">STEG 02</span>
-                        <h3 class="text-xl mb-2 font-bold uppercase tracking-tight">Optimera</h3>
-                        <p class="text-sm opacity-60 leading-relaxed">Vi fixar struktur, entiteter, schema och innehållsluckor för att tala "AI".</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-row md:flex-col items-center md:text-center gap-6">
-                    <div class="w-16 h-16 bg-[var(--nord-bg-primary)] border border-[var(--nord-cyan)] rounded-full flex items-center justify-center z-10 text-xl shrink-0 shadow-[0_0_15px_var(--cyan-glow)]">
-                        <i class="ph-duotone ph-rocket-launch text-nord-cyan"></i>
-                    </div>
-                    <div>
-                        <span class="text-[10px] font-mono opacity-40 block mb-1 tracking-widest">STEG 03</span>
-                        <h3 class="text-xl mb-2 font-bold uppercase tracking-tight">Vinn Synlighet</h3>
-                        <p class="text-sm opacity-60 leading-relaxed">Ditt varumärke blir upptäckbart över Search Generative Experience & Chatbots.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- WHY NORDSYM SECTION -->
-    <section class="py-24 px-6 relative">
-        <div class="absolute inset-0 bg-nord-cyan/5 dark:bg-nord-cyan/[0.02] -z-10"></div>
-        <div class="container mx-auto max-w-[1100px]">
-            <h2 class="text-3xl md:text-5xl text-center mb-20 tracking-tighter">Varför NordSym?</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                <div class="glass-card p-8 flex items-start gap-6 hover:border-[var(--nord-cyan)] transition-all">
-                    <div class="w-12 h-12 bg-nord-cyan/10 rounded-xl flex items-center justify-center text-nord-cyan text-2xl shrink-0">
-                        <i class="ph-duotone ph-sparkle"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl mb-2 font-bold">Bortom Google</h3>
-                        <p class="text-sm opacity-60 leading-relaxed">Bli upptäckt av AI-assistenter, inte bara traditionella sökmotorer.</p>
-                    </div>
-                </div>
-                <div class="glass-card p-8 flex items-start gap-6 hover:border-[var(--nord-cyan)] transition-all">
-                    <div class="w-12 h-12 bg-nord-cyan/10 rounded-xl flex items-center justify-center text-nord-cyan text-2xl shrink-0">
-                        <i class="ph-duotone ph-shield-check"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl mb-2 font-bold">Framtidssäkrat</h3>
-                        <p class="text-sm opacity-60 leading-relaxed">Håll dig steget före algoritmskiften som dödar traditionell SEO-trafik.</p>
-                    </div>
-                </div>
-                <div class="glass-card p-8 flex items-start gap-6 hover:border-[var(--nord-cyan)] transition-all">
-                    <div class="w-12 h-12 bg-nord-cyan/10 rounded-xl flex items-center justify-center text-nord-cyan text-2xl shrink-0">
-                        <i class="ph-duotone ph-chart-bar"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl mb-2 font-bold">Mätbart</h3>
-                        <p class="text-sm opacity-60 leading-relaxed">Tydliga insikter om hur ditt varumärkes entitet uppfattas av AI.</p>
-                    </div>
-                </div>
-                <div class="glass-card p-8 flex items-start gap-6 hover:border-[var(--nord-cyan)] transition-all">
-                    <div class="w-12 h-12 bg-nord-cyan/10 rounded-xl flex items-center justify-center text-nord-cyan text-2xl shrink-0">
-                        <i class="ph-duotone ph-receipt"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl mb-2 font-bold">Inga Timdebiteringar</h3>
-                        <p class="text-sm opacity-60 leading-relaxed">Slipp otydliga konsultfakturor. Vi erbjuder fasta månadspriser och garanterade leveranser, utan överraskningar.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRICING SECTION -->
-    <section id="pricing" class="py-32 px-4 sm:px-8">
-        <div class="container mx-auto max-w-7xl">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl mb-6 tracking-tighter">Välj Din Nivå</h2>
-                <p class="opacity-60 max-w-xl mx-auto">Vi arbetar med ett begränsat antal kunder för att säkerställa högsta kvalitet under beta-perioden.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-                <!-- Starter -->
-                <div class="glass-card p-8 md:p-10 flex flex-col h-full">
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold mb-1">Starter</h3>
-                        <p class="text-[10px] opacity-40 uppercase tracking-widest font-black">Självständiga Team</p>
-                    </div>
-                    <div class="mb-10">
-                        <span class="text-5xl font-black tracking-tighter">1 999</span>
-                        <span class="text-sm opacity-50 font-bold ml-1">SEK / mån</span>
-                    </div>
-                    <ul class="space-y-4 mb-12 text-sm flex-grow">
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-check text-nord-cyan mt-1"></i> <span>Månatlig automatisk AEO/GEO audit</span></li>
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-check text-nord-cyan mt-1"></i> <span>Implementation playbook (PDF + videos)</span></li>
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-check text-nord-cyan mt-1"></i> <span>Schema markup templates</span></li>
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-check text-nord-cyan mt-1"></i> <span>Email support (48h)</span></li>
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-check text-nord-cyan mt-1"></i> <span>Knowledge base access</span></li>
-                    </ul>
-                    <button onclick="openPlanModal('Starter')" class="cta-button text-sm">Ansök om plats</button>
-                </div>
-
-                <!-- Growth -->
-                <div class="glass-card highlight p-8 md:p-12 relative flex flex-col h-full">
-                    <!-- CHANGED: REPLACED "MEST POPULÄR" WITH "REKOMMENDERAS" -->
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-nord-cyan text-black text-[10px] font-black uppercase tracking-widest rounded-full shadow-[0_0_20px_var(--cyan-glow)]">
-                        Rekommenderas
-                    </div>
-                    <div class="mb-8">
-                        <h3 class="text-2xl font-black mb-1 text-nord-cyan">Growth</h3>
-                        <p class="text-[10px] opacity-60 uppercase tracking-widest font-black">Tech-Driven Scale-Ups</p>
-                    </div>
-                    <div class="mb-10">
-                        <span class="text-6xl font-black tracking-tighter">4 999</span>
-                        <span class="text-sm opacity-50 font-bold ml-1">SEK / mån</span>
-                    </div>
-                    <ul class="space-y-5 mb-12 text-sm font-medium flex-grow">
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-sparkle text-nord-cyan mt-1 text-lg"></i> <span>Allt i Starter</span></li>
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-check text-nord-cyan mt-1"></i> <span>2x audits/månad + competitor benchmarking</span></li>
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-check text-nord-cyan mt-1"></i> <span>Quarterly strategy calls (45 min)</span></li>
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-check text-nord-cyan mt-1"></i> <span>Knowledge Graph setup (one-time)</span></li>
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-check text-nord-cyan mt-1"></i> <span>Custom schema creation</span></li>
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-check text-nord-cyan mt-1"></i> <span>Slack support (24h)</span></li>
-                    </ul>
-                    <button onclick="openPlanModal('Growth')" class="cta-button primary-solid text-base py-5">Ansök om plats</button>
-                </div>
-
-                <!-- Enterprise -->
-                <div class="glass-card p-8 md:p-10 flex flex-col h-full">
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold mb-1">Enterprise</h3>
-                        <p class="text-[10px] opacity-40 uppercase tracking-widest font-black">Hands-Off Executive</p>
-                    </div>
-                    <div class="mb-10">
-                        <span class="text-3xl font-black tracking-tighter italic uppercase">Skräddarsytt</span>
-                    </div>
-                    <ul class="space-y-4 mb-12 text-sm flex-grow opacity-80">
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-sparkle text-nord-cyan mt-1"></i> <span>Allt i Growth</span></li>
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-check text-nord-cyan mt-1"></i> <span>Vi implementerar allt (done-for-you)</span></li>
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-check text-nord-cyan mt-1"></i> <span>Weekly audits + real-time alerts</span></li>
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-check text-nord-cyan mt-1"></i> <span>Monthly 1:1 strategy (90 min)</span></li>
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-check text-nord-cyan mt-1"></i> <span>Dedicated Slack channel</span></li>
-                        <li class="flex gap-3 items-start"><i class="ph-bold ph-check text-nord-cyan mt-1"></i> <span>Priority support (4h, 24/7)</span></li>
-                    </ul>
-                    <button onclick="openModal('contactModal')" class="cta-button text-sm opacity-80 border-white/20 text-white">Kontakta oss</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ SECTION -->
-    <section id="faq" class="py-24 px-6 relative">
+    <!-- FAQ -->
+    <section id="faq" class="py-24 px-6 relative bg-nord-cyan/[0.01]">
         <div class="max-w-3xl mx-auto">
             <h2 class="text-3xl md:text-5xl text-center mb-16 tracking-tighter">Vanliga frågor</h2>
             <div class="space-y-4">
                 <details class="glass-card group overflow-hidden">
-                    <summary class="p-6 flex justify-between items-center cursor-pointer list-none select-none">
-                        <span class="font-bold text-base md:text-lg tracking-tight">Vad är skillnaden mellan SEO och AEO?</span>
-                        <i class="ph-bold ph-caret-down text-nord-cyan transition-transform duration-300"></i>
-                    </summary>
-                    <div class="px-6 pb-6 text-sm opacity-70 leading-relaxed border-t border-white/5 pt-4">
-                        Traditionell SEO handlar om att ranka högt i listor med blå länkar. AEO (Answer Engine Optimization) handlar om att bli det direkta svaret som AI-modeller som ChatGPT och Claude ger till användaren. Vi optimerar för konversation istället för bara klick.
-                    </div>
+                    <summary class="p-6 flex justify-between items-center cursor-pointer list-none select-none"><span class="font-bold text-lg">Vad är skillnaden mellan SEO och AEO?</span><i class="ph-bold ph-caret-down text-nord-cyan transition-transform"></i></summary>
+                    <div class="px-6 pb-6 text-sm opacity-70 leading-relaxed border-t border-white/5 pt-4 font-mono">Traditionell SEO handlar om att ranka högt i listor med blå länkar. AEO (Answer Engine Optimization) handlar om att bli det direkta svaret som AI-modeller som ChatGPT och Claude ger.</div>
                 </details>
                 <details class="glass-card group overflow-hidden">
-                    <summary class="p-6 flex justify-between items-center cursor-pointer list-none select-none">
-                        <span class="font-bold text-base md:text-lg tracking-tight">Hur snabbt ser man resultat i AI-motorer?</span>
-                        <i class="ph-bold ph-caret-down text-nord-cyan transition-transform duration-300"></i>
-                    </summary>
-                    <div class="px-6 pb-6 text-sm opacity-70 leading-relaxed border-t border-white/5 pt-4">
-                        Till skillnad från SEO som kan ta månader, indexeras AI-motorer ofta snabbare då de prioriterar auktoritära källor. De flesta av våra kunder ser en mätbar skillnad i hur AI refererar till deras varumärke inom 4 till 8 veckor efter implementation.
-                    </div>
+                    <summary class="p-6 flex justify-between items-center cursor-pointer list-none select-none"><span class="font-bold text-lg">Hur snabbt ser man resultat?</span><i class="ph-bold ph-caret-down text-nord-cyan transition-transform"></i></summary>
+                    <div class="px-6 pb-6 text-sm opacity-70 leading-relaxed border-t border-white/5 pt-4 font-mono">AI-motorer indexeras ofta snabbare än traditionella robotar. Genom att stärka dina auktoritetssignaler ser de flesta kunder en mätbar skillnad i hur de refereras inom 4 till 8 veckor.</div>
                 </details>
                 <details class="glass-card group overflow-hidden">
-                    <summary class="p-6 flex justify-between items-center cursor-pointer list-none select-none">
-                        <span class="font-bold text-base md:text-lg tracking-tight">Måste jag bygga om hela min webbplats?</span>
-                        <i class="ph-bold ph-caret-down text-nord-cyan transition-transform duration-300"></i>
-                    </summary>
-                    <div class="px-6 pb-6 text-sm opacity-70 leading-relaxed border-t border-white/5 pt-4">
-                        Nej. Vi optimerar din befintliga arkitektur genom att lägga till tekniska lager (Schema.org) och justera innehållsstrukturen så att AI-agenter lättare kan tolka din data. Det är en kirurgisk förbättring snarare än en total ombyggnad.
-                    </div>
+                    <summary class="p-6 flex justify-between items-center cursor-pointer list-none select-none"><span class="font-bold text-lg">Måste jag bygga om min sajt?</span><i class="ph-bold ph-caret-down text-nord-cyan transition-transform"></i></summary>
+                    <div class="px-6 pb-6 text-sm opacity-70 leading-relaxed border-t border-white/5 pt-4 font-mono">Nej. Vi optimerar din befintliga arkitektur genom tekniska lager som Schema.org och justerar innehållsstrukturen så att AI-agenter lättare kan tolka din data.</div>
                 </details>
                 <details class="glass-card group overflow-hidden">
-                    <summary class="p-6 flex justify-between items-center cursor-pointer list-none select-none">
-                        <span class="font-bold text-base md:text-lg tracking-tight">Vad är GEO och varför behövs det?</span>
-                        <i class="ph-bold ph-caret-down text-nord-cyan transition-transform duration-300"></i>
-                    </summary>
-                    <div class="px-6 pb-6 text-sm opacity-70 leading-relaxed border-t border-white/5 pt-4">
-                        GEO (Generative Engine Optimization) fokuserar på att bygga auktoritet i generativa sökresultat som Google SGE. Genom att stärka ditt varumärkes "entitetsstatus" ökar vi chansen att AI väljer just dig som expertkälla när den sammanfattar information.
-                    </div>
+                    <summary class="p-6 flex justify-between items-center cursor-pointer list-none select-none"><span class="font-bold text-lg">Vad är GEO och varför behövs det?</span><i class="ph-bold ph-caret-down text-nord-cyan transition-transform"></i></summary>
+                    <div class="px-6 pb-6 text-sm opacity-70 leading-relaxed border-t border-white/5 pt-4 font-mono">GEO (Generative Engine Optimization) fokuserar på att bygga auktoritet i generativa sökresultat som Google SGE. Det handlar om att bli den föredragna källan när AI sammanfattar komplex information.</div>
                 </details>
             </div>
         </div>
     </section>
 
-    <!-- FINAL CTA SECTION -->
-    <section class="py-24 px-6 relative z-10 border-t border-white/5">
-        <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-3xl md:text-5xl mb-10 tracking-tighter">Kolla din AEO/GEO-synlighet nu</h2>
+    <!-- FINAL CTA -->
+    <section class="py-24 px-6 text-center border-t border-white/5">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl md:text-5xl mb-10 tracking-tighter">Kolla din AEO-synlighet nu</h2>
             <form id="pricingForm" class="glass-card p-6 md:p-8 relative group">
-                <div class="relative mb-6">
-                    <input 
-                        type="text" 
-                        id="pricingUrl" 
-                        class="input-styled text-center"
-                        placeholder="foretag.com" 
-                        required 
-                    />
-                </div>
-                <button type="submit" id="pricingSubmitBtn" class="cta-button" disabled>
-                    <span id="pricingBtnText">Kör Gratis Analys</span>
-                    <div id="pricingSpinner" class="spinner hidden ml-2"></div>
-                </button>
+                <input type="text" id="pricingUrl" class="input-styled text-center mb-6" placeholder="foretag.com" required />
+                <button type="submit" id="pricingSubmitBtn" class="cta-button" disabled><span id="pricingBtnText">Kör Gratis Analys</span><div id="pricingSpinner" class="spinner hidden ml-2"></div></button>
             </form>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="py-20 border-t border-nord-text-primary/10 text-center relative z-10">
+    <footer class="py-20 border-t border-white/5 text-center relative z-10">
         <div class="container mx-auto px-6">
-            <div class="flex justify-center mb-8">
-                <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logo" class="h-12 w-12 hover:scale-110 transition-transform duration-300">
-            </div>
+            <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" class="h-12 w-12 mx-auto mb-8 hover:scale-110 transition-transform">
             <p class="text-[10px] font-mono opacity-30 uppercase tracking-[0.4em] mb-8 font-black">NordSym AB &bull; Framing the Future of Search</p>
             <div class="flex justify-center gap-8 text-[10px] font-black uppercase tracking-widest opacity-30 hover:opacity-100 transition-opacity mb-12">
-                <a href="javascript:void(0)" onclick="openModal('privacyModal')" class="hover:text-nord-cyan">Integritet</a>
-                <a href="javascript:void(0)" onclick="openModal('idTermsModal')" class="hover:text-nord-cyan">Villkor</a>
-                <a href="javascript:void(0)" onclick="openModal('contactModal')" class="hover:text-nord-cyan">Kontakt</a>
+                <a href="javascript:void(0)" onclick="openModal('privacyModal')">Integritet</a>
+                <a href="javascript:void(0)" onclick="openModal('termsModal')">Villkor</a>
+                <a href="javascript:void(0)" onclick="openModal('contactModal')">Kontakt</a>
             </div>
             <p class="text-[9px] opacity-20 font-mono tracking-widest">&copy; 2025 NordSym AB. Alla rättigheter förbehållna.</p>
         </div>
@@ -847,107 +502,115 @@
             const ctx = canvas.getContext('2d');
             let width, height, stars = [], meteors = [];
 
-            const resize = () => {
-                width = window.innerWidth;
-                height = window.innerHeight;
-                canvas.width = width;
-                canvas.height = height;
-                initStars();
-            };
-
-            const initStars = () => {
-                stars = [];
-                const count = width < 768 ? 100 : 300;
-                for(let i = 0; i < count; i++) {
-                    stars.push({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 1.2, a: Math.random(), s: Math.random() * 0.02 });
-                }
-            };
-
+            const resize = () => { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; initStars(); };
+            const initStars = () => { stars = []; for(let i = 0; i < (width < 768 ? 100 : 300); i++) stars.push({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 1.2, a: Math.random(), s: Math.random() * 0.02 }); };
             const draw = () => {
                 ctx.clearRect(0, 0, width, height);
-                stars.forEach(s => {
-                    s.a += s.s;
-                    ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(Math.sin(s.a)) * 0.5})`;
-                    ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
-                });
+                stars.forEach(s => { s.a += s.s; ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(Math.sin(s.a)) * 0.5})`; ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill(); });
                 if(Math.random() < 0.005) meteors.push({ x: Math.random() * width, y: 0, s: Math.random() * 10 + 5, l: Math.random() * 100 + 50 });
-                meteors.forEach((m, i) => {
-                    m.x -= m.s; m.y += m.s;
-                    ctx.strokeStyle = `rgba(0, 212, 255, ${1 - m.y/height})`; ctx.lineWidth = 1;
-                    ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(m.x + m.l, m.y - m.l); ctx.stroke();
-                    if(m.y > height) meteors.splice(i, 1);
-                });
+                meteors.forEach((m, i) => { m.x -= m.s; m.y += m.s; ctx.strokeStyle = `rgba(0, 212, 255, ${1 - m.y/height})`; ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(m.x + m.l, m.y - m.l); ctx.stroke(); if(m.y > height) meteors.splice(i, 1); });
                 requestAnimationFrame(draw);
             };
-
-            window.addEventListener('resize', resize);
-            resize(); draw();
+            window.addEventListener('resize', resize); resize(); draw();
 
             const themeToggle = document.getElementById('themeToggle');
-            const themeIcon = themeToggle.querySelector('.theme-icon');
-            let theme = localStorage.getItem('theme') || 'light';
+            const updateTheme = (t) => { if(t === 'dark') { document.body.removeAttribute('data-theme'); } else { document.body.setAttribute('data-theme', 'light'); } };
+            themeToggle.addEventListener('click', () => { let t = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light'; updateTheme(t); localStorage.setItem('theme', t); });
+            updateTheme(localStorage.getItem('theme') || 'light');
 
-            const updateTheme = (t) => {
-                if(t === 'dark') { document.body.removeAttribute('data-theme'); themeIcon.className = 'ph-bold ph-sun theme-icon'; } 
-                else { document.body.setAttribute('data-theme', 'light'); themeIcon.className = 'ph-bold ph-moon theme-icon'; }
+            // Modal Logic
+            window.openModal = (id) => { 
+                const modal = document.getElementById(id);
+                modal.classList.remove('modal-hidden'); 
+                modal.classList.add('modal-active'); 
             };
-            updateTheme(theme);
-
-            themeToggle.addEventListener('click', () => { theme = theme === 'dark' ? 'light' : 'dark'; updateTheme(theme); localStorage.setItem('theme', theme); });
-
-            window.openModal = (id) => { const m = document.getElementById(id); if (m) { m.classList.remove('modal-hidden'); m.classList.add('modal-active'); } };
-            window.closeModal = (id) => { const m = document.getElementById(id); if (m) { m.classList.remove('modal-active'); m.classList.add('modal-hidden'); } };
-
-            window.addEventListener('click', (e) => { if (e.target.classList.contains('modal-active')) closeModal(e.target.id); });
-
-            const validate = (val) => {
-                if(val.length < 3) return false;
-                const pattern = /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/;
-                return pattern.test(val.replace('https://', '').replace('http://', '').split('/')[0]);
+            window.closeModal = (id) => { 
+                const modal = document.getElementById(id);
+                modal.classList.remove('modal-active'); 
+                modal.classList.add('modal-hidden'); 
             };
 
-            const setupValidation = (inputId, btnId) => {
-                const input = document.getElementById(inputId); const btn = document.getElementById(btnId);
-                if (!input || !btn) return;
-                input.addEventListener('input', () => { const isOk = validate(input.value); btn.disabled = !isOk; });
-            };
+            // Esc key and Outside Click
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.modal-active').forEach(modal => closeModal(modal.id));
+                }
+            });
 
-            setupValidation('heroUrl', 'heroSubmitBtn');
-            setupValidation('pricingUrl', 'pricingSubmitBtn');
+            document.querySelectorAll('.fixed').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) closeModal(modal.id);
+                });
+            });
 
-            const handleForm = async (e, modalId) => {
-                e.preventDefault(); const form = e.target; const btn = form.querySelector('button'); const original = btn.innerHTML;
-                btn.disabled = true; btn.innerHTML = '<div class="spinner mx-auto"></div>';
+            // Validation
+            const validate = (val) => /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/.test(val.replace('https://', '').replace('http://', '').split('/')[0]);
+            const input = document.getElementById('heroUrl');
+            const btn = document.getElementById('heroSubmitBtn');
+            const pInput = document.getElementById('pricingUrl');
+            const pBtn = document.getElementById('pricingSubmitBtn');
+            input.addEventListener('input', () => { btn.disabled = !validate(input.value); });
+            pInput.addEventListener('input', () => { pBtn.disabled = !validate(pInput.value); });
+
+            // Form Handler
+            const handleForm = async (e) => {
+                e.preventDefault();
+                const form = e.target;
+                const btn = form.querySelector('button');
+                const target = form.getAttribute('data-target');
+                const original = btn.innerHTML;
+                const endpoint = target === 'n8n' ? "https://nordsym.app.n8n.cloud/webhook/v1/aeo-geo-audit" : "https://formspree.io/f/xykylozp";
+                
+                btn.disabled = true;
+                btn.innerHTML = '<div class="spinner mx-auto"></div>';
+                const formData = new FormData(form);
+                const currentUrl = formData.get('url') || "En domän";
+                
                 try {
-                    const res = await fetch("https://formspree.io/f/xykylozp", { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
-                    if(res.ok) { closeModal(modalId); openModal('successModal'); form.reset(); }
-                } catch(err) { console.error(err); } finally { btn.disabled = false; btn.innerHTML = original; }
+                    const res = await fetch(endpoint, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+                    if(res.ok) {
+                        closeModal(form.closest('.fixed').id);
+                        document.getElementById('displaySuccessUrl').textContent = currentUrl;
+                        openModal('successModal');
+                        form.reset();
+                    }
+                } catch(err) { console.error("Error:", err); } finally { btn.disabled = false; btn.innerHTML = original; }
             };
 
-            document.getElementById('leadForm').addEventListener('submit', (e) => handleForm(e, 'interceptModal'));
-            document.getElementById('planForm').addEventListener('submit', (e) => handleForm(e, 'planModal'));
-            document.getElementById('contactForm').addEventListener('submit', (e) => handleForm(e, 'contactModal'));
+            document.getElementById('leadForm').addEventListener('submit', handleForm);
+            document.getElementById('planForm').addEventListener('submit', handleForm);
+            document.getElementById('contactForm').addEventListener('submit', handleForm);
 
-            const TERMINAL_LOGS = ["Analyserar DOM...", "Kontrollerar Schema...", "Beräknar E-E-A-T...", "Klar!"];
-            const startTheaterMode = (e, urlInputId, btnTextId, spinnerId) => {
-                e.preventDefault(); const urlInput = document.getElementById(urlInputId); const btnText = document.getElementById(btnTextId); const spinner = document.getElementById(spinnerId); const btn = e.target.querySelector('button');
+            // Theater Mode
+            const theater = (e, urlId, btnTextId, spinnerId) => {
+                e.preventDefault();
+                const url = document.getElementById(urlId).value;
+                const btnText = document.getElementById(btnTextId);
+                const spinner = document.getElementById(spinnerId);
+                const btn = e.target.querySelector('button');
                 btn.disabled = true; spinner.classList.remove('hidden');
-                let i = 0; const interval = setInterval(() => {
-                    btnText.textContent = TERMINAL_LOGS[i] || "Slutför..."; i++;
-                    if(i > TERMINAL_LOGS.length) { clearInterval(interval); document.getElementById('leadUrl').value = urlInput.value; openModal('interceptModal'); spinner.classList.add('hidden'); btnText.textContent = "Kör Gratis Analys"; btn.disabled = false; }
+                const logs = ["Ansluter till domän...", "Läser Schema.org...", "Beräknar E-E-A-T...", "Klar!"];
+                let i = 0;
+                const int = setInterval(() => {
+                    btnText.textContent = logs[i] || "Slutför..."; i++;
+                    if(i > logs.length) {
+                        clearInterval(int);
+                        document.getElementById('leadUrl').value = url;
+                        openModal('interceptModal');
+                        spinner.classList.add('hidden');
+                        btnText.textContent = "Kör Gratis Analys"; btn.disabled = false;
+                    }
                 }, 800);
             };
 
-            document.getElementById('heroForm').addEventListener('submit', (e) => startTheaterMode(e, 'heroUrl', 'heroBtnText', 'heroSpinner'));
-            document.getElementById('pricingForm').addEventListener('submit', (e) => startTheaterMode(e, 'pricingUrl', 'pricingBtnText', 'pricingSpinner'));
+            document.getElementById('heroForm').addEventListener('submit', (e) => theater(e, 'heroUrl', 'heroBtnText', 'heroSpinner'));
+            document.getElementById('pricingForm').addEventListener('submit', (e) => theater(e, 'pricingUrl', 'pricingBtnText', 'pricingSpinner'));
 
             window.openPlanModal = (name) => {
                 document.getElementById('planNameDisplay').textContent = name;
                 document.getElementById('planSelected').value = name;
                 openModal('planModal');
             };
-
-            document.addEventListener('keydown', (e) => { if(e.key === 'Escape') document.querySelectorAll('.modal-active').forEach(m => closeModal(m.id)); });
         });
     </script>
 </body>
