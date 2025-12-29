@@ -211,22 +211,26 @@
         
         /* Growth Card Highlight */
         .glass-card.highlight {
-            background: rgba(0, 31, 63, 0.6); /* Default Dark Mode Background */
             border-color: var(--nord-cyan);
             box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
             transform: scale(1.05);
             z-index: 10;
+            background: rgba(0, 31, 63, 0.6); /* Default Dark Mode BG */
         }
         .glass-card.highlight:hover {
             transform: scale(1.05) translateY(-5px);
             box-shadow: 0 0 30px rgba(0, 212, 255, 0.25);
         }
 
-        /* Light Mode Specific Overrides */
+        /* Light Mode Card Overrides */
+        body[data-theme="light"] .glass-card {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
         body[data-theme="light"] .glass-card.highlight {
-            background: #FFFFFF; /* Clean White in Light Mode */
-            border-color: #00BFFF;
+            background: #ffffff;
             box-shadow: 0 10px 40px rgba(0, 191, 255, 0.2);
+            border: 2px solid var(--nord-cyan);
         }
 
         @media (max-width: 1024px) {
@@ -287,13 +291,21 @@
         .input-styled.invalid + .validation-icon { opacity: 1; color: var(--error); }
         .input-styled.valid { border-color: var(--success); }
         .input-styled.invalid { border-color: var(--error); }
+        
+        /* Theme Toggle Button Specifics */
+        body[data-theme="light"] #themeToggle {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Lift it up */
+            border-color: #e5e7eb;
+            color: #F59E0B; /* Sun color */
+        }
 
         /* Modal Transitions */
         .modal-hidden { opacity: 0; pointer-events: none; }
         .modal-active { opacity: 1; pointer-events: all; }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased" data-theme="light">
 
     <!-- CANVAS BACKGROUND -->
     <canvas id="starfall"></canvas>
@@ -350,6 +362,42 @@
                     <i class="ph-bold ph-arrow-right"></i>
                 </button>
                 <p class="text-xs text-center opacity-50 mt-4">Rapporten genereras & skickas inom 5 minuter.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- WAITLIST / INTEREST MODAL -->
+    <div id="planModal" class="fixed inset-0 z-[1000] flex items-center justify-center bg-[#0c1427]/95 backdrop-blur-md modal-hidden transition-opacity duration-500">
+        <div class="glass-card p-10 max-w-lg w-full transform scale-95 transition-transform duration-300 relative mx-4">
+            <button onclick="closeModal('planModal')" class="absolute top-4 right-4 opacity-50 hover:opacity-100 hover:text-red-400">
+                <i class="ph-bold ph-x text-xl"></i>
+            </button>
+
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--nord-cyan)]/20 border border-[var(--nord-cyan)] text-[var(--nord-cyan)] text-xs font-bold uppercase tracking-wider mb-4">
+                    <span class="w-2 h-2 rounded-full bg-[var(--nord-cyan)] animate-pulse"></span>
+                    Early Access
+                </div>
+                <h2 class="text-3xl mb-3" id="planModalTitle">Ansök om plats</h2>
+                <p class="opacity-70 text-sm leading-relaxed">Vi rullar ut plattformen i etapper. Skriv upp dig på väntelistan för <span id="planNameDisplay" class="font-bold text-white"></span>.</p>
+            </div>
+
+            <form id="planForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono opacity-60 mb-2 uppercase">Företags-epost</label>
+                    <input type="email" id="planEmail" required placeholder="namn@foretag.se" class="input-styled">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono opacity-60 mb-2 uppercase">Webbplats (Valfritt)</label>
+                    <input type="url" id="planUrl" placeholder="foretag.se" class="input-styled">
+                </div>
+                <input type="hidden" id="planSelected">
+                
+                <button type="submit" class="cta-button w-full mt-2">
+                    <span>Gå med i väntelistan</span>
+                    <i class="ph-bold ph-paper-plane-right"></i>
+                </button>
+                <p class="text-xs text-center opacity-50 mt-4">Vi kontaktar dig inom 24h om du blir antagen.</p>
             </form>
         </div>
     </div>
@@ -596,13 +644,11 @@
                         <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Email support (48h)</li>
                         <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Knowledge base access</li>
                     </ul>
-                    <a href="mailto:gustav@nordsym.se?subject=Starter%20Interest%20-%20AEO/GEO&body=Hej!%0A%0AJag%20är%20intresserad%20av%20Starter-paketet%20för:%0A%0AWebbplats:%20[din-webbplats.se]%0AFöretag:%20[ditt%20företag]%0A%0AMvh" class="cta-button text-sm">Kom Igång</a>
+                    <button onclick="openPlanModal('Starter')" class="cta-button text-sm">Ansök om plats</button>
                 </div>
 
                 <!-- UPDATED: Growth Pricing -->
-                <!-- Removed inline bg class, handled by CSS now -->
                 <div class="glass-card highlight p-8 md:p-10 relative">
-                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[var(--nord-cyan)] text-[#0c1427] text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-[0_0_15px_var(--cyan-glow)]">Mest Populär</div>
                     
                     <h3 class="text-2xl mb-2 text-cyan">Growth</h3>
                     <div class="inline-block px-3 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-[var(--nord-cyan)]/20 text-cyan mb-6">Tech-Driven Scale-Ups</div>
@@ -618,7 +664,7 @@
                         <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Custom schema creation</li>
                         <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Slack support (24h)</li>
                     </ul>
-                    <a href="mailto:gustav@nordsym.se?subject=Growth%20Interest%20-%20AEO/GEO&body=Hej!%0A%0AJag%20vill%20diskutera%20Growth-paketet%20för:%0A%0AWebbplats:%20[din-webbplats.se]%0AFöretag:%20[ditt%20företag]%0AÅrlig%20omsättning:%20[uppskattning]%0A%0AMvh" class="cta-button primary-solid text-base">Välj Growth</a>
+                    <button onclick="openPlanModal('Growth')" class="cta-button primary-solid text-base">Ansök om plats</button>
                 </div>
 
                 <!-- UPDATED: Enterprise Pricing -->
@@ -626,8 +672,7 @@
                     <h3 class="text-xl mb-2">Enterprise</h3>
                     <div class="inline-block px-3 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-white/10 mb-6">Hands-Off Executive</div>
                     <div class="mb-6">
-                        <span class="text-4xl font-display font-bold">Från 9 999</span>
-                        <span class="text-sm opacity-60"> SEK / mån</span>
+                        <span class="text-4xl font-display font-bold">Skräddarsytt</span>
                     </div>
                     <ul class="space-y-3 mb-8 text-sm opacity-80">
                         <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> <strong>Allt i Growth</strong></li>
@@ -637,7 +682,7 @@
                         <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Dedicated Slack channel</li>
                         <li class="flex gap-2"><i class="ph-bold ph-check text-cyan"></i> Priority support (4h, 24/7)</li>
                     </ul>
-                    <a href="mailto:gustav@nordsym.se?subject=Enterprise%20AEO/GEO%20Inquiry&body=Hej!%0A%0AJag%20behöver%20en%20custom%20Enterprise-lösning%20för:%0A%0AFöretag:%20[företagsnamn]%0AWebbplats:%20[webbplats]%0AÅrlig%20omsättning:%20[uppskattning]%0ASpecifika%20behov:%20[beskriv]%0A%0AMvh" class="cta-button text-sm bg-transparent border-[var(--glass-border)] text-[var(--nord-text-primary)] hover:border-[var(--nord-cyan)]">Boka Samtal</a>
+                    <button onclick="openPlanModal('Enterprise')" class="cta-button text-sm bg-transparent border-[var(--glass-border)] text-[var(--nord-text-primary)] hover:border-[var(--nord-cyan)]">Kontakta oss</button>
                 </div>
 
             </div>
@@ -851,17 +896,27 @@
             const leadEmail = document.getElementById('leadEmail');
             const leadUrl = document.getElementById('leadUrl');
             const leadSource = document.getElementById('leadSource');
+            
+            // --- PLAN MODAL ELEMENTS ---
+            const planModal = document.getElementById('planModal');
+            const planNameDisplay = document.getElementById('planNameDisplay');
+            const planSelected = document.getElementById('planSelected');
+            const planForm = document.getElementById('planForm');
+            const planEmail = document.getElementById('planEmail');
+            const planUrlVal = document.getElementById('planUrl');
 
             // --- THEME LOGIC ---
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = themeToggle.querySelector('.theme-icon');
-            let currentTheme = localStorage.getItem('theme') || 'dark';
+            let currentTheme = localStorage.getItem('theme') || 'light';
 
             const updateThemeIcon = (theme) => {
                 themeIcon.className = theme === 'dark' ? 'ph-bold ph-moon theme-icon' : 'ph-bold ph-sun theme-icon';
             };
 
             if (currentTheme === 'light') document.body.setAttribute('data-theme', 'light');
+            else document.body.removeAttribute('data-theme');
+            
             updateThemeIcon(currentTheme);
 
             themeToggle.addEventListener('click', () => {
@@ -1006,6 +1061,69 @@
                 modal.classList.remove('modal-active');
                 modal.classList.add('modal-hidden');
             };
+            
+            // --- PLAN MODAL LOGIC ---
+            window.openPlanModal = (planName) => {
+                planNameDisplay.textContent = planName;
+                planSelected.value = planName;
+                
+                const modal = document.getElementById('planModal');
+                modal.classList.remove('modal-hidden');
+                modal.classList.add('modal-active');
+                
+                setTimeout(() => document.getElementById('planEmail').focus(), 100);
+            };
+
+            planForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = planForm.querySelector('button');
+                const originalText = btn.innerHTML;
+                
+                btn.disabled = true;
+                btn.innerHTML = '<div class="spinner border-white"></div>';
+                
+                // Simulate API/Webhook call for Plan Interest
+                const payload = {
+                    type: 'waitlist_signup',
+                    plan: planSelected.value,
+                    email: planEmail.value,
+                    url: planUrlVal.value,
+                    timestamp: new Date().toISOString()
+                };
+
+                // Using same endpoint or logic (simulated delay here mostly)
+                try {
+                    // Send to same webhook but logic can separate by payload type
+                    await fetch(WEBHOOK_ENDPOINT, {
+                        method: 'POST',
+                        body: JSON.stringify(payload),
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                    
+                    // Success UI
+                    closeModal('planModal');
+                    // Reuse success modal but customize text briefly? 
+                    // Or simple alert for now to keep it clean, or update successModal text dynamically.
+                    // Let's use standard success modal but update text.
+                    document.getElementById('successUrl').parentElement.innerHTML = 'Din plats i kön är säkrad.';
+                    document.getElementById('successModal').querySelector('h2').textContent = "Välkommen!";
+                    document.getElementById('successModal').querySelector('.bg-\\[rgba\\(255\\,255\\,255\\,0\\.05\\)\\]').style.display = 'none'; // Hide details list
+                    
+                    const successModal = document.getElementById('successModal');
+                    successModal.classList.remove('modal-hidden');
+                    successModal.classList.add('modal-active');
+                    successModal.querySelector('.success-card-inner').classList.remove('scale-90');
+                    
+                    planForm.reset();
+
+                } catch (error) {
+                    console.error(error);
+                    alert("Kunde inte ansluta. Försök igen.");
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                }
+            });
         });
     </script>
 </body>
