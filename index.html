@@ -189,6 +189,54 @@
 
         .modal-hidden { opacity: 0; pointer-events: none; visibility: hidden; }
         .modal-active { opacity: 1; pointer-events: all; visibility: visible; }
+
+        /* AI PULSE ANIMATION */
+        .ai-icon-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.6em; /* Width to hold the icon inline without shifting text too much */
+            height: 1.6em;
+            vertical-align: middle;
+            position: relative;
+            margin: 0 0.2em;
+        }
+
+        .ai-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensures images fit within the container */
+            transform: translate(-50%, -50%) scale(0.5);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy organic feel */
+            color: var(--nord-text-secondary);
+        }
+
+        /* SVG specific coloring fallback */
+        svg.ai-icon {
+            fill: currentColor;
+        }
+
+        .ai-icon.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1); /* Reset scale to 1 for images */
+        }
+
+        /* BRAND COLORS & GLOWS */
+        .brand-openai.active { filter: drop-shadow(0 0 15px rgba(16, 163, 127, 0.4)); }
+        .brand-claude.active { filter: drop-shadow(0 0 15px rgba(193, 95, 60, 0.5)); }
+        .brand-perplexity.active { filter: drop-shadow(0 0 15px rgba(34, 184, 205, 0.4)); }
+        .brand-gemini.active { color: #4E86F8 !important; filter: drop-shadow(0 0 15px rgba(78, 134, 248, 0.4)); }
+        .brand-x.active { color: #ffffff !important; filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4)); }
+        .brand-grok.active { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4)); }
+        .brand-github.active { color: #ffffff !important; filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3)); }
+
+        body[data-theme="light"] .brand-x.active, 
+        body[data-theme="light"] .brand-github.active { color: #000000 !important; filter: drop-shadow(0 0 10px rgba(0,0,0,0.2)); }
+        body[data-theme="light"] .brand-grok.active { filter: drop-shadow(0 0 10px rgba(0,0,0,0.2)); }
     </style>
 </head>
 <body class="antialiased" data-theme="light">
@@ -349,7 +397,39 @@
                 <span class="px-3 py-1 rounded bg-[var(--nord-cyan)] text-[#0c1427] font-black shadow-[0_0_20px_var(--cyan-glow)]">2026: AEO & GEO</span>
             </div>
             <h1 class="text-4xl md:text-6xl lg:text-7xl mb-8 leading-[1.1] tracking-tighter">Är ditt varumärke <br><span class="text-nord-cyan">synligt för AI?</span></h1>
-            <p class="text-lg md:text-xl opacity-70 max-w-2xl mx-auto mb-12 font-medium">Optimera för <strong>ChatGPT, Claude & Perplexity</strong>. Vi transformerar din webbplats från en statisk sida till en källa som AI-motorer litar på.</p>
+            
+            <!-- AI PULSE PARAGRAPH -->
+            <p class="text-lg md:text-xl opacity-70 max-w-2xl mx-auto mb-12 font-medium flex items-center justify-center flex-wrap gap-1">
+                Optimera för
+                <span class="ai-icon-container">
+                    <!-- OpenAI (ChatGPT) -->
+                    <img src="https://raw.githubusercontent.com/nordsym/development/refs/heads/main/chattgpt.svg" alt="OpenAI" class="ai-icon brand-openai active">
+                    
+                    <!-- Anthropic (Claude) -->
+                    <img src="https://raw.githubusercontent.com/nordsym/development/refs/heads/main/Claude_AI_symbol.svg" alt="Claude" class="ai-icon brand-claude">
+                    
+                    <!-- Perplexity AI -->
+                    <img src="https://raw.githubusercontent.com/nordsym/development/refs/heads/main/69a62a5edc08d755dd8a4ef017e14c63.svg" alt="Perplexity" class="ai-icon brand-perplexity">
+                    
+                    <!-- Google Gemini -->
+                    <img src="https://raw.githubusercontent.com/nordsym/development/refs/heads/main/Google-Gemini-Logo-Transparent-thumb.svg" alt="Gemini" class="ai-icon brand-gemini">
+
+                    <!-- xAI (X Logo, Waiting for upload, using inline) -->
+                    <svg class="ai-icon brand-x" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231h0.001zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
+                    </svg>
+
+                    <!-- Grok -->
+                    <img src="https://raw.githubusercontent.com/nordsym/development/refs/heads/main/grok-logo-png_seeklogo-613403.svg" alt="Grok" class="ai-icon brand-grok">
+
+                    <!-- GitHub (Waiting for upload, using inline) -->
+                    <svg class="ai-icon brand-github" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.419-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.22.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                    </svg>
+                </span>
+                . Vi transformerar din webbplats från en statisk sida till en källa som AI-motorer litar på.
+            </p>
+
             <form id="heroForm" class="glass-card p-6 md:p-10 max-w-2xl mx-auto shadow-2xl relative group">
                 <div class="relative mb-6">
                     <input type="text" id="heroUrl" class="input-styled text-center" placeholder="Ange din domän (t.ex. foretag.com)" required autocomplete="off" />
@@ -530,14 +610,28 @@
             themeToggle.addEventListener('click', () => { let t = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light'; updateTheme(t); localStorage.setItem('theme', t); });
             updateTheme(localStorage.getItem('theme') || 'light');
 
+            // AI ICON SWITCHER LOGIC
+            const icons = document.querySelectorAll('.ai-icon');
+            if (icons.length > 0) {
+                let currentIndex = 0;
+                setInterval(() => {
+                    icons[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % icons.length;
+                    icons[currentIndex].classList.add('active');
+                }, 2000); // 2s duration per icon
+            }
+
             // Modal Logic
             window.openModal = (id) => { 
                 const modal = document.getElementById(id);
+                if (!modal) return; // Guard against null
                 modal.classList.remove('modal-hidden'); 
                 modal.classList.add('modal-active'); 
             };
             window.closeModal = (id) => { 
+                if (!id) return; // Guard against empty ID
                 const modal = document.getElementById(id);
+                if (!modal) return; // Guard against null element
                 modal.classList.remove('modal-active'); 
                 modal.classList.add('modal-hidden'); 
             };
@@ -549,9 +643,12 @@
                 }
             });
 
-            document.querySelectorAll('.fixed').forEach(modal => {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) closeModal(modal.id);
+            document.querySelectorAll('.fixed').forEach(element => {
+                element.addEventListener('click', (e) => {
+                    // Only close if it has an ID (is a modal) and the click was on the background
+                    if (e.target === element && element.id) {
+                        closeModal(element.id);
+                    }
                 });
             });
 
@@ -581,7 +678,9 @@
                 try {
                     const res = await fetch(endpoint, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
                     if(res.ok) {
-                        closeModal(form.closest('.fixed').id);
+                        const modal = form.closest('.fixed');
+                        if (modal && modal.id) closeModal(modal.id);
+                        
                         document.getElementById('displaySuccessUrl').textContent = currentUrl;
                         openModal('successModal');
                         form.reset();
