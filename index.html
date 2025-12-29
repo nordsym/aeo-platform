@@ -322,10 +322,10 @@
             <div class="text-center mb-8">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--nord-purple)]/20 border border-[var(--nord-purple)] text-[var(--nord-purple)] text-xs font-bold uppercase tracking-wider mb-4">
                     <span class="w-2 h-2 rounded-full bg-[var(--nord-purple)] animate-pulse"></span>
-                    Djupanalys Krävs
+                    Analys Redo
                 </div>
-                <h2 class="text-3xl mb-3">Lås upp Framtiden</h2>
-                <p class="opacity-70 text-sm leading-relaxed">Vi har anslutit till Knowledge Graph. Vart ska vi skicka din detaljerade AEO/GEO-rapport?</p>
+                <h2 class="text-3xl mb-3">Audit Slutförd</h2>
+                <p class="opacity-70 text-sm leading-relaxed">Systemet har samlat in data. Vart ska vi skicka din AEO/GEO-rapport med rekommendationer?</p>
             </div>
 
             <form id="leadForm" class="space-y-4">
@@ -352,8 +352,18 @@
                 <i class="ph-bold ph-check"></i>
             </div>
             <h2 class="text-3xl mb-4">Analys Köad</h2>
-            <p class="mb-6 opacity-80">Våra AI-agenter skannar nu <span id="successUrl" class="text-cyan font-mono bg-blue-900/30 px-2 py-1 rounded text-sm"></span>.</p>
-            <p class="text-sm opacity-60 mb-8">Kolla din inkorg strax.</p>
+            <p class="mb-4 opacity-80">Våra AI-agenter skannar nu <span id="successUrl" class="text-cyan font-mono bg-blue-900/30 px-2 py-1 rounded text-sm"></span>.</p>
+            
+            <div class="bg-[rgba(255,255,255,0.05)] rounded-lg p-6 mb-6 text-left border border-[var(--glass-border)]">
+                <p class="text-xs text-[var(--nord-cyan)] font-bold uppercase mb-3"><i class="ph-bold ph-clock"></i> 2-5 minuter att slutföra</p>
+                <ul class="space-y-2 text-sm opacity-80">
+                    <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[var(--nord-purple)]"></i> AI-synlighetspoäng (0-100)</li>
+                    <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[var(--nord-purple)]"></i> Schema.org gap-analys</li>
+                    <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-[var(--nord-purple)]"></i> Konkreta fix-rekommendationer</li>
+                </ul>
+            </div>
+
+            <p class="text-sm opacity-60 mb-8">Rapporten landar strax i din inkorg.</p>
             <button onclick="closeModal('successModal')" class="text-sm border-b border-white/20 hover:text-cyan hover:border-cyan transition-colors pb-1">Stäng Fönstret</button>
         </div>
     </div>
@@ -386,7 +396,8 @@
 
                 <div class="relative mb-8">
                     <input 
-                        type="url" 
+                        type="text" 
+                        inputmode="url"
                         id="heroUrl" 
                         class="input-styled text-center md:text-left"
                         placeholder="Ange din webbplats (exempel.se)" 
@@ -631,7 +642,8 @@
             <form id="footerForm" class="relative">
                 <div class="relative mb-4">
                     <input 
-                        type="url" 
+                        type="text" 
+                        inputmode="url"
                         id="footerUrl" 
                         class="input-styled"
                         placeholder="exempel.se" 
