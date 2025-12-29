@@ -379,7 +379,7 @@
                     Early Access
                 </div>
                 <h2 class="text-3xl mb-3" id="planModalTitle">Ansök om plats</h2>
-                <p class="opacity-70 text-sm leading-relaxed">Vi rullar ut plattformen i etapper. Skriv upp dig på väntelistan för <span id="planNameDisplay" class="font-bold text-white"></span>.</p>
+                <p class="opacity-70 text-sm leading-relaxed">Vi rullar ut plattformen i etapper. Skriv upp dig på väntelistan för <span id="planNameDisplay" class="font-bold text-[var(--nord-cyan)]"></span>.</p>
             </div>
 
             <form id="planForm" class="space-y-4">
@@ -867,7 +867,7 @@
             
             // --- EXISTING LOGIC ---
             // CONSTANTS
-            const WEBHOOK_ENDPOINT = "https://nordsym.app.n8n.cloud/webhook/v1/aeo-geo-audit"; 
+            const WEBHOOK_ENDPOINT = "https://formspree.io/f/xykylozp"; 
             const TERMINAL_LOGS = [
                 "Initierar AEO Protokoll...",
                 "Handskakning med OpenAI API...",
@@ -1058,9 +1058,19 @@
             // --- UTILS ---
             window.closeModal = (id) => {
                 const modal = document.getElementById(id);
-                modal.classList.remove('modal-active');
-                modal.classList.add('modal-hidden');
+                if (modal) {
+                    modal.classList.remove('modal-active');
+                    modal.classList.add('modal-hidden');
+                }
             };
+            
+            // --- GLOBAL ESCAPE KEY LISTENER ---
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const activeModals = document.querySelectorAll('.modal-active');
+                    activeModals.forEach(modal => closeModal(modal.id));
+                }
+            });
             
             // --- PLAN MODAL LOGIC ---
             window.openPlanModal = (planName) => {
@@ -1097,7 +1107,10 @@
                     await fetch(WEBHOOK_ENDPOINT, {
                         method: 'POST',
                         body: JSON.stringify(payload),
-                        headers: { 'Content-Type': 'application/json' }
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        }
                     });
                     
                     // Success UI
