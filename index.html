@@ -211,6 +211,7 @@
         
         /* Growth Card Highlight */
         .glass-card.highlight {
+            background: rgba(0, 31, 63, 0.6); /* Default Dark Mode Background */
             border-color: var(--nord-cyan);
             box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
             transform: scale(1.05);
@@ -220,6 +221,14 @@
             transform: scale(1.05) translateY(-5px);
             box-shadow: 0 0 30px rgba(0, 212, 255, 0.25);
         }
+
+        /* Light Mode Specific Overrides */
+        body[data-theme="light"] .glass-card.highlight {
+            background: #FFFFFF; /* Clean White in Light Mode */
+            border-color: #00BFFF;
+            box-shadow: 0 10px 40px rgba(0, 191, 255, 0.2);
+        }
+
         @media (max-width: 1024px) {
             .glass-card.highlight { transform: scale(1); }
             .glass-card.highlight:hover { transform: translateY(-5px); }
@@ -591,7 +600,8 @@
                 </div>
 
                 <!-- UPDATED: Growth Pricing -->
-                <div class="glass-card highlight p-8 md:p-10 relative bg-[rgba(0,31,63,0.6)]">
+                <!-- Removed inline bg class, handled by CSS now -->
+                <div class="glass-card highlight p-8 md:p-10 relative">
                     <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[var(--nord-cyan)] text-[#0c1427] text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-[0_0_15px_var(--cyan-glow)]">Mest Populär</div>
                     
                     <h3 class="text-2xl mb-2 text-cyan">Growth</h3>
