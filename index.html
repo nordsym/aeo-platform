@@ -81,14 +81,28 @@
         }
 
         body {
-            background-color: var(--nord-bg-primary);
+            background-color: transparent; /* Changed from variable to transparent */
             color: var(--nord-text-primary);
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             min-height: 100vh;
-            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
+            /* Removed background-color transition, kept color transition */
+            transition: color 0.3s ease;
             position: relative;
             overflow-x: hidden;
+        }
+
+        /* NEW FIXED BACKGROUND LAYER FOR PERFORMANCE */
+        #fixed-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -50; /* Behind everything */
+            background-color: var(--nord-bg-primary);
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
         }
 
         #starfall {
@@ -104,7 +118,9 @@
         }
 
         body[data-theme="light"] #starfall { opacity: 0; }
-        body[data-theme="light"] {
+        
+        /* MOVED LIGHT THEME BACKGROUND LOGIC TO FIXED LAYER */
+        body[data-theme="light"] #fixed-bg {
             background-image: linear-gradient(#F3F4F6 1px, transparent 1px), linear-gradient(90deg, #F3F4F6 1px, transparent 1px);
             background-size: 40px 40px;
         }
@@ -245,6 +261,9 @@
     </style>
 </head>
 <body class="antialiased" data-theme="light">
+
+    <!-- FIXED BACKGROUND LAYER -->
+    <div id="fixed-bg"></div>
 
     <!-- CANVAS BACKGROUND -->
     <canvas id="starfall"></canvas>
