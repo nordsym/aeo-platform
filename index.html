@@ -258,6 +258,26 @@
         .brand-grok.active { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4)); }
         
         body[data-theme="light"] .brand-grok.active { filter: drop-shadow(0 0 10px rgba(0,0,0,0.2)); }
+
+        /* TYPEWRITER EFFECT */
+        .typewriter-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: var(--nord-cyan);
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+        #typewriterOverlay {
+            font-size: 1.1rem;
+            padding: 1rem 1.25rem;
+        }
+        @media (max-width: 640px) {
+            #typewriterOverlay {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body class="antialiased" data-theme="light">
@@ -274,13 +294,6 @@
             <a href="https://nordsym.com" title="Tillbaks till huvudsajten" class="block hover:scale-110 transition-transform duration-300">
                 <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logo" class="h-10 w-10 drop-shadow-[0_0_8px_rgba(0,212,255,0.4)]">
             </a>
-            <div class="px-2.5 py-0.5 rounded-full bg-[var(--nord-purple)]/20 border border-[var(--nord-purple)]/40 text-[var(--nord-purple)] text-[10px] font-extrabold tracking-widest uppercase flex items-center gap-2 cursor-help" title="Systemet är i stängd beta">
-                <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--nord-purple)] opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-[var(--nord-purple)]"></span>
-                </span>
-                Beta
-            </div>
         </div>
         <button id="themeToggle" class="w-10 h-10 rounded-full flex items-center justify-center border border-[var(--glass-border)] bg-[var(--glass-bg)] text-[var(--nord-cyan)] hover:scale-110 transition-transform shadow-lg" aria-label="Byt tema">
             <i class="ph-bold ph-moon theme-icon text-lg"></i>
@@ -454,7 +467,11 @@
 
             <form id="heroForm" class="glass-card p-6 md:p-10 max-w-2xl mx-auto shadow-2xl relative group">
                 <div class="relative mb-6">
-                    <input type="text" id="heroUrl" class="input-styled text-center" placeholder="Ange din domän (t.ex. foretag.com)" required autocomplete="off" />
+                    <input type="text" id="heroUrl" class="input-styled text-center" placeholder="" required autocomplete="off" />
+                    <div id="typewriterOverlay" class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <span id="typewriterText" class="font-mono text-[var(--nord-text-secondary)] opacity-50"></span>
+                        <span class="typewriter-cursor"></span>
+                    </div>
                 </div>
                 <button type="submit" id="heroSubmitBtn" class="cta-button text-lg py-4" disabled>
                     <span id="heroBtnText">Kör Kostnadsfri AI-Analys</span>
@@ -750,6 +767,52 @@
                 document.getElementById('planSelected').value = name;
                 openModal('planModal');
             };
+
+            // TYPEWRITER EFFECT
+            const typewriterDomains = ['foretag.com', 'dinbutik.se', 'startup.io', 'klinik.se', 'byra.com'];
+            const typewriterEl = document.getElementById('typewriterText');
+            const typewriterOverlay = document.getElementById('typewriterOverlay');
+            const heroInput = document.getElementById('heroUrl');
+            let domainIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typeSpeed = 100;
+
+            function typewrite() {
+                // Hide typewriter when user is typing
+                if (heroInput.value.length > 0) {
+                    typewriterOverlay.style.opacity = '0';
+                    setTimeout(typewrite, 500);
+                    return;
+                } else {
+                    typewriterOverlay.style.opacity = '1';
+                }
+
+                const currentDomain = typewriterDomains[domainIndex];
+
+                if (isDeleting) {
+                    typewriterEl.textContent = currentDomain.substring(0, charIndex - 1);
+                    charIndex--;
+                    typeSpeed = 50;
+                } else {
+                    typewriterEl.textContent = currentDomain.substring(0, charIndex + 1);
+                    charIndex++;
+                    typeSpeed = 100;
+                }
+
+                if (!isDeleting && charIndex === currentDomain.length) {
+                    isDeleting = true;
+                    typeSpeed = 2000; // Pause at end
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    domainIndex = (domainIndex + 1) % typewriterDomains.length;
+                    typeSpeed = 500; // Pause before next word
+                }
+
+                setTimeout(typewrite, typeSpeed);
+            }
+
+            typewrite();
         });
     </script>
 </body>
